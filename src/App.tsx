@@ -1,11 +1,7 @@
 import Board from "./componets/Board";
 
 function App() {
-  return (
-    <>
-      <Board />
-    </>
-  );
+  return <Board />;
 }
 
 export default App;
