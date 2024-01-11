@@ -1,5 +1,8 @@
-/**
- * TODO:
- * Make Piece ReactComponet that will render piece SVG and will make draggable with TBD DnD library
- *
- */
+import king from "../../assets/pieces/black/king.svg";
+// Import other pieces similarly
+
+const Piece: React.FC = () => {
+  return <div>{king}</div>;
+};
+
+export default Piece;
