@@ -1,13 +1,14 @@
+import { size } from "../../const";
 import { PieceColors, PieceLabels } from "../Piece/types";
 import { Board } from "./types";
 
 export const initialBoardSetup = (): Board => {
   const board: Board = Array(8)
     .fill(null)
-    .map(() => Array(8).fill(null));
+    .map(() => Array(size).fill(null));
 
   // Set up PieceLabels.PieceLabels.Pawns
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < size; i++) {
     board[1][i] = {
       label: PieceLabels.Pawn,
       color: PieceColors.Black,

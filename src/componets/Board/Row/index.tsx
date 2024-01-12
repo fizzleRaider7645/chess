@@ -1,13 +1,20 @@
-import { size } from "../../../const";
+import React from "react";
 import Square from "../Square";
 import { RowElement } from "../subcomponents";
+import { RowProps } from "./types";
 
-const Row = ({ rowIndex }: { rowIndex: number }): JSX.Element => {
+const Row: React.FC<RowProps> = ({ rowIndex, rowData, updateBoard }) => {
   return (
     <RowElement key={`row-${rowIndex}`}>
-      {Array.from({ length: size }, (_, columnIndex) =>
-        Square({ columnIndex, rowIndex })
-      )}
+      {rowData.map((piece, columnIndex) => (
+        <Square
+          key={`square-${rowIndex}-${columnIndex}`}
+          rowIndex={rowIndex}
+          columnIndex={columnIndex}
+          piece={piece}
+          updateBoard={updateBoard}
+        />
+      ))}
     </RowElement>
   );
 };

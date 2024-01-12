@@ -1,42 +1,36 @@
 import Piece from "../../Piece";
-import { PieceColors, PieceLabels } from "../../Piece/types";
 import { SquareElement } from "../subcomponents";
-import { SquareProps } from "../types";
+import { SquareProps } from "./types";
+import { PieceColors } from "../../Piece/types";
 
-const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
-  /**
-   * Determines the color of a square in a chessboard.
-   *
-   * Chessboards have alternating square colors. Each row starts with a different color
-   * than the previous row, creating a checkered pattern. This line calculates whether
-   * a square should be dark or light based on its row and column indices.
-   *
-   * - `row % 2`: Checks if the row number is odd or even.
-   *    - If the row number is even (row % 2 is 0), then for a standard chessboard,
-   *      the first square (i = 0) should be dark. Therefore, the square is dark if
-   *      its column index `i` is even (i % 2 === 0).
-   *    - If the row number is odd (row % 2 is not 0), then the first square should
-   *      be light. Therefore, the square is dark if its column index `i` is odd
-   *      (i % 2 !== 0).
-   *
-   * As a result, `isDark` is a boolean that's true if the square should be dark,
-   * and false if it should be light, creating the alternating pattern.
-   */
+const Square = ({
+  columnIndex,
+  rowIndex,
+  piece,
+  updateBoard,
+}: SquareProps): JSX.Element => {
   const isDark = rowIndex % 2 ? columnIndex % 2 === 0 : columnIndex % 2 !== 0;
 
-  const onClickHandler = () => {};
+  const renderPiece = () => {
+    if (piece) {
+      return (
+        <Piece
+          color={
+            piece.color === PieceColors.White
+              ? PieceColors.White
+              : PieceColors.Black
+          }
+          label={piece.label}
+          position={{ row: rowIndex, col: columnIndex }}
+        />
+      );
+    }
+    return null;
+  };
 
   return (
-    <SquareElement
-      key={`square-${rowIndex}-${columnIndex}`}
-      $isDark={isDark}
-      onClick={onClickHandler}
-    >
-      <Piece
-        color={PieceColors.White}
-        label={PieceLabels.Knight}
-        position={{ row: 1, col: 1 }}
-      />
+    <SquareElement $isDark={isDark} onClick={() => updateBoard}>
+      {renderPiece()}
     </SquareElement>
   );
 };

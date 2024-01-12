@@ -1,8 +1,3 @@
-import Piece from "../Piece";
-
-export interface SquareProps {
-  columnIndex: number;
-  rowIndex: number;
-}
+import { Piece } from "../Piece/types";
 
 export type Board = (Piece | null)[][];
