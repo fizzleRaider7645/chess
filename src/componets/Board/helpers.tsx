@@ -1,7 +1,7 @@
 import { Row, Square } from "./subcomponents";
 import { SquareProps } from "./types";
 
-const renderSquare = ({ i, row }: SquareProps): JSX.Element => {
+const renderSquare = ({ i, row, piece }: SquareProps): JSX.Element => {
   /**
    * Determines the color of a square in a chessboard.
    *
@@ -21,7 +21,16 @@ const renderSquare = ({ i, row }: SquareProps): JSX.Element => {
    * and false if it should be light, creating the alternating pattern.
    */
   const isDark = row % 2 ? i % 2 === 0 : i % 2 !== 0;
-  return <Square key={`square-${row}-${i}`} $isDark={isDark}></Square>;
+
+  const onClickHandler = () => {};
+
+  return (
+    <Square
+      key={`square-${row}-${i}`}
+      $isDark={isDark}
+      onClick={onClickHandler}
+    ></Square>
+  );
 };
 
 export const renderRow = (row: number): JSX.Element => {

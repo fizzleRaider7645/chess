@@ -1,11 +1,9 @@
 // https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces
 
-type ChessPieceSVG = React.FunctionComponent<
-  React.SVGProps<SVGSVGElement>
-> | null;
+import { Pieces } from "../Piece/types";
 
 export interface SquareProps {
   i: number;
   row: number;
-  piece?: ChessPieceSVG;
+  piece: Pieces;
 }

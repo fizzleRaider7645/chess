@@ -1,27 +1,16 @@
-import { ChessPieceSVG } from "../Board/types";
-
-export interface PieceProps {
-  svg: ChessPieceSVG;
-}
-
-export enum Color {
-  white = "WHITE",
-  black = "BLACK",
-}
-
 export enum Piece {
-  pawn = "PAWN",
-  knight = "KNIGHT",
-  rook = "ROOK",
-  bishop = "BISHOP",
-  queen = "QUEEN",
-  king = "KING",
+  Pawn = "PAWN",
+  Knight = "KNIGHT",
+  Rook = "ROOK",
+  Bishop = "BISHOP",
+  Queen = "QUEEN",
+  King = "KING",
 }
 
-export type PieceType =
-  | Piece.pawn
-  | Piece.knight
-  | Piece.rook
-  | Piece.bishop
-  | Piece.queen
-  | Piece.king;
+export type Pieces =
+  | Piece.Pawn
+  | Piece.Knight
+  | Piece.Rook
+  | Piece.Bishop
+  | Piece.Queen
+  | Piece.King;
