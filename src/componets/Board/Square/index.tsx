@@ -6,7 +6,8 @@ import { PieceToRender } from "./subcomponents";
 import { determineIsDark } from "./helpers";
 
 const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
-  // const { setChessBoard, setSelectedPiece } = useContext(Context);
+  const { chessBoard, setChessBoard, selectedPiece, setSelectedPiece } =
+    useContext(Context);
 
   const isDark = determineIsDark(columnIndex, rowIndex);
 
