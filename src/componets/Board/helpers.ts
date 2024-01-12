@@ -3,7 +3,7 @@ import { PieceColors, PieceLabels } from "../Piece/types";
 import { Board } from "./types";
 
 export const initialBoardSetup = (): Board => {
-  const board: Board = Array(8)
+  const board: Board = Array(size)
     .fill(null)
     .map(() => Array(size).fill(null));
 
