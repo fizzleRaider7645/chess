@@ -6,12 +6,16 @@ import { PieceToRender } from "./subcomponents";
 import { determineIsDark } from "./helpers";
 
 const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
-  const { setChessBoard } = useContext(Context);
+  // const { setChessBoard, setSelectedPiece } = useContext(Context);
 
   const isDark = determineIsDark(columnIndex, rowIndex);
 
+  const onClickHandler = () => {
+    // setSelectedPiece();
+  };
+
   return (
-    <SquareElement $isDark={isDark} onClick={() => setChessBoard}>
+    <SquareElement $isDark={isDark} onClick={() => onClickHandler}>
       <PieceToRender
         piece={piece}
         rowIndex={rowIndex}
