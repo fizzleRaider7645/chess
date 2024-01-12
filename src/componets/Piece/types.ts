@@ -7,7 +7,9 @@ export enum PieceLabels {
   King = "KING",
 }
 
+export type PieceColors = "white" | "black";
+
 export interface PieceProps {
-  color: "white" | "black";
+  color: PieceColors;
   label: PieceLabels;
 }

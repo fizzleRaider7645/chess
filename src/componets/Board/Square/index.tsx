@@ -1,3 +1,5 @@
+import Piece from "../../Piece";
+import { PieceLabels } from "../../Piece/types";
 import { SquareElement } from "../subcomponents";
 import { SquareProps } from "../types";
 
@@ -22,8 +24,6 @@ const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
    */
   const isDark = rowIndex % 2 ? columnIndex % 2 === 0 : columnIndex % 2 !== 0;
 
-  const piece = <>Hi</>; // add get piece function here
-
   const onClickHandler = () => {};
 
   return (
@@ -32,7 +32,7 @@ const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
       $isDark={isDark}
       onClick={onClickHandler}
     >
-      {piece ?? ""}
+      <Piece color={"white"} label={PieceLabels.Knight} />
     </SquareElement>
   );
 };
