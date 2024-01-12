@@ -2,7 +2,7 @@ import { size } from "../../../const";
 import Square from "../Square";
 import { RowElement } from "../subcomponents";
 
-const Row = (rowIndex: number): JSX.Element => {
+const Row = ({ rowIndex }: { rowIndex: number }): JSX.Element => {
   return (
     <RowElement key={`row-${rowIndex}`}>
       {Array.from({ length: size }, (_, columnIndex) =>

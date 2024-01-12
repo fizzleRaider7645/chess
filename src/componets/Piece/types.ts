@@ -7,9 +7,15 @@ export enum PieceLabels {
   King = "KING",
 }
 
-export type PieceColors = "white" | "black";
-
-export interface PieceProps {
+export enum PieceColors {
+  White = "white",
+  Black = "black",
+}
+export interface Piece {
   color: PieceColors;
   label: PieceLabels;
+  position: {
+    row: number;
+    col: number;
+  };
 }

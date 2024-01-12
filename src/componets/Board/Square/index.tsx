@@ -1,5 +1,5 @@
 import Piece from "../../Piece";
-import { PieceLabels } from "../../Piece/types";
+import { PieceColors, PieceLabels } from "../../Piece/types";
 import { SquareElement } from "../subcomponents";
 import { SquareProps } from "../types";
 
@@ -32,7 +32,11 @@ const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
       $isDark={isDark}
       onClick={onClickHandler}
     >
-      <Piece color={"white"} label={PieceLabels.Knight} />
+      <Piece
+        color={PieceColors.White}
+        label={PieceLabels.Knight}
+        position={{ row: 1, col: 1 }}
+      />
     </SquareElement>
   );
 };

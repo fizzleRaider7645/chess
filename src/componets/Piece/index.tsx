@@ -1,4 +1,4 @@
-import { PieceLabels, PieceProps } from "./types";
+import { PieceLabels, Piece, PieceColors } from "./types";
 import WhitePawn from "../../assets/pieces/white/pawn.svg";
 import BlackPawn from "../../assets/pieces/black/pawn.svg";
 import WhiteRook from "../../assets/pieces/white/rook.svg";
@@ -12,33 +12,31 @@ import BlackQueen from "../../assets/pieces/black/queen.svg";
 import WhiteKing from "../../assets/pieces/white/king.svg";
 import BlackKing from "../../assets/pieces/black/king.svg";
 
-const Piece = ({ color, label }: PieceProps): JSX.Element => {
-  const colors = { WHITE: "white", BLACK: "black" };
-
+const Piece = ({ color, label }: Piece): JSX.Element => {
   const pieceMap = {
     [PieceLabels.Pawn]: {
-      [colors.WHITE]: WhitePawn,
-      [colors.BLACK]: BlackPawn,
+      [PieceColors.White]: WhitePawn,
+      [PieceColors.Black]: BlackPawn,
     },
     [PieceLabels.Rook]: {
-      [colors.WHITE]: WhiteRook,
-      [colors.BLACK]: BlackRook,
+      [PieceColors.White]: WhiteRook,
+      [PieceColors.Black]: BlackRook,
     },
     [PieceLabels.Knight]: {
-      [colors.WHITE]: WhiteKnight,
-      [colors.BLACK]: BlackKnight,
+      [PieceColors.White]: WhiteKnight,
+      [PieceColors.Black]: BlackKnight,
     },
     [PieceLabels.Bishop]: {
-      [colors.WHITE]: WhiteBishop,
-      [colors.BLACK]: BlackBishop,
+      [PieceColors.White]: WhiteBishop,
+      [PieceColors.Black]: BlackBishop,
     },
     [PieceLabels.Queen]: {
-      [colors.WHITE]: WhiteQueen,
-      [colors.BLACK]: BlackQueen,
+      [PieceColors.White]: WhiteQueen,
+      [PieceColors.Black]: BlackQueen,
     },
     [PieceLabels.King]: {
-      [colors.WHITE]: WhiteKing,
-      [colors.BLACK]: BlackKing,
+      [PieceColors.White]: WhiteKing,
+      [PieceColors.Black]: BlackKing,
     },
   };
 
