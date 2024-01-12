@@ -5,3 +5,9 @@ export interface SquareProps {
   columnIndex: number;
   piece: Piece | null;
 }
+
+export interface PieceToRenderProps {
+  piece: Piece | null;
+  rowIndex: number;
+  columnIndex: number;
+}
