@@ -1,4 +1,4 @@
-export enum Piece {
+export enum PieceLabels {
   Pawn = "PAWN",
   Knight = "KNIGHT",
   Rook = "ROOK",
@@ -7,10 +7,7 @@ export enum Piece {
   King = "KING",
 }
 
-export type Pieces =
-  | Piece.Pawn
-  | Piece.Knight
-  | Piece.Rook
-  | Piece.Bishop
-  | Piece.Queen
-  | Piece.King;
+export interface PieceProps {
+  color: "white" | "black";
+  label: PieceLabels;
+}

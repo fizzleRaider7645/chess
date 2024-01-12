@@ -1,7 +1,7 @@
-import { Row, Square } from "./subcomponents";
+import { RowElement, SquareElement } from "./subcomponents";
 import { SquareProps } from "./types";
 
-const renderSquare = ({ i, row, piece }: SquareProps): JSX.Element => {
+const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
   /**
    * Determines the color of a square in a chessboard.
    *
@@ -20,25 +20,29 @@ const renderSquare = ({ i, row, piece }: SquareProps): JSX.Element => {
    * As a result, `isDark` is a boolean that's true if the square should be dark,
    * and false if it should be light, creating the alternating pattern.
    */
-  const isDark = row % 2 ? i % 2 === 0 : i % 2 !== 0;
+  const isDark = rowIndex % 2 ? columnIndex % 2 === 0 : columnIndex % 2 !== 0;
+
+  const piece = <>Hi</>; // add get piece function here
 
   const onClickHandler = () => {};
 
   return (
-    <Square
-      key={`square-${row}-${i}`}
+    <SquareElement
+      key={`square-${rowIndex}-${columnIndex}`}
       $isDark={isDark}
       onClick={onClickHandler}
-    ></Square>
+    >
+      {piece ?? ""}
+    </SquareElement>
   );
 };
 
-export const renderRow = (row: number): JSX.Element => {
-  const size = 8; // Assuming size is the number of squares per row
-
+export const Row = (rowIndex: number): JSX.Element => {
   return (
-    <Row key={`row-${row}`}>
-      {Array.from({ length: size }, (_, i) => renderSquare({ i, row }))}
-    </Row>
+    <RowElement key={`row-${rowIndex}`}>
+      {Array.from({ length: 8 }, (_, columnIndex) =>
+        Square({ columnIndex, rowIndex })
+      )}
+    </RowElement>
   );
 };

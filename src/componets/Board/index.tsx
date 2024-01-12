@@ -1,14 +1,10 @@
-import { renderRow } from "./helpers";
+import { Row } from "./helpers";
 import { Container, ParentContainer } from "./subcomponents";
 
 const Board: React.FC = () => {
-  const size = 8;
-
   return (
     <ParentContainer>
-      <Container>
-        {Array.from({ length: size }, (_, row) => renderRow(row))}
-      </Container>
+      <Container>{Array.from({ length: 8 }, (_, row) => Row(row))}</Container>
     </ParentContainer>
   );
 };

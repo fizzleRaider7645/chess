@@ -16,13 +16,13 @@ export const Container = styled.div`
   justify-content: center;
 `;
 
-export const Row = styled.div`
+export const RowElement = styled.div`
   display: flex;
   flex-grow: 1;
   width: 100%;
 `;
 
-export const Square = styled.div<{ $isDark: boolean }>`
+export const SquareElement = styled.div<{ $isDark: boolean }>`
   flex-grow: 1;
   display: flex;
   align-items: center;
