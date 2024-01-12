@@ -1,5 +1,5 @@
-import { RowElement, SquareElement } from "./subcomponents";
-import { SquareProps } from "./types";
+import { SquareElement } from "../subcomponents";
+import { SquareProps } from "../types";
 
 const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
   /**
@@ -37,12 +37,4 @@ const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
   );
 };
 
-export const Row = (rowIndex: number): JSX.Element => {
-  return (
-    <RowElement key={`row-${rowIndex}`}>
-      {Array.from({ length: 8 }, (_, columnIndex) =>
-        Square({ columnIndex, rowIndex })
-      )}
-    </RowElement>
-  );
-};
+export default Square;
