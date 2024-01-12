@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Square from "../Square";
 import { RowElement } from "../subcomponents";
 import { RowProps } from "./types";
+import { Context } from "../Context";
 
-const Row: React.FC<RowProps> = ({ rowIndex, rowData, updateBoard }) => {
+const Row: React.FC<RowProps> = ({ rowIndex }) => {
+  const { chessBoard } = useContext(Context);
+  const rowData = chessBoard[rowIndex];
+
   return (
     <RowElement key={`row-${rowIndex}`}>
       {rowData.map((piece, columnIndex) => (
@@ -12,7 +16,6 @@ const Row: React.FC<RowProps> = ({ rowIndex, rowData, updateBoard }) => {
           rowIndex={rowIndex}
           columnIndex={columnIndex}
           piece={piece}
-          updateBoard={updateBoard}
         />
       ))}
     </RowElement>

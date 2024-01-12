@@ -4,6 +4,7 @@ import Row from "./Row";
 import { Container, ParentContainer } from "./subcomponents";
 import { Board as ChessBoard } from "./types";
 import { initialBoardSetup } from "./helpers";
+import { Context } from "./Context";
 
 const Board: React.FC = () => {
   const [chessBoard, setChessBoard] = useState<ChessBoard>(initialBoardSetup());
@@ -11,14 +12,11 @@ const Board: React.FC = () => {
   return (
     <ParentContainer>
       <Container>
-        {Array.from({ length: size }, (_, rowIndex) => (
-          <Row
-            key={`row-${rowIndex}`}
-            rowIndex={rowIndex}
-            rowData={chessBoard[rowIndex]}
-            updateBoard={setChessBoard}
-          />
-        ))}
+        <Context.Provider value={{ chessBoard, setChessBoard }}>
+          {Array.from({ length: size }, (_, rowIndex) => (
+            <Row key={`row-${rowIndex}`} rowIndex={rowIndex} />
+          ))}
+        </Context.Provider>
       </Container>
     </ParentContainer>
   );
