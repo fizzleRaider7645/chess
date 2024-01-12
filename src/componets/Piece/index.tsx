@@ -42,7 +42,7 @@ const Piece = ({ color, label }: ChessPiece): JSX.Element => {
 
   const pieceToRender = pieceMap[label]?.[color];
 
-  return <img src={pieceToRender} />;
+  return <img src={pieceToRender} alt={`${color} ${label}`} />;
 };
 
 export default Piece;
