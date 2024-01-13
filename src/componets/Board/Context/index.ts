@@ -1,4 +1,3 @@
-// Context.js (or wherever you define your context)
 import { createContext } from "react";
 import { initialBoardSetup } from "./boardState";
 import { ChessboardContextType } from "./types";
