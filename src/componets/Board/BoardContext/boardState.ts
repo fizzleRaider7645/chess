@@ -2,7 +2,7 @@ import { size } from "../../../const";
 import { PieceColors, PieceLabels } from "../../Piece/types";
 import { Board } from "../types";
 
-const boardState: Board = Array(size)
+export const boardState: Board = Array(size)
   .fill(null)
   .map(() => Array(size).fill(null));
 

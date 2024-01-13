@@ -6,6 +6,9 @@ import { determineIsDark, isValidDestination } from "./helpers";
 import { PieceColors } from "../../Piece/types";
 import Piece from "../../Piece";
 import { AppContext } from "../../../AppContext";
+import { stateUpdate } from "../../../AppContext/stateUpdate";
+import { TransformerAction } from "../../../AppContext/types";
+import { takeTurnTransformer } from "../../../AppContext/transformers";
 
 const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
   const { chessBoard, setChessBoard, selectedPiece, setSelectedPiece } =
@@ -21,7 +24,7 @@ const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
     const newBoard = chessBoard.map((row) => [...row]);
 
     // If no piece is currently selected and the clicked square has a piece, select the piece
-    if (!selectedPiece && piece?.color === gameState.currentTurn) {
+    if (!selectedPiece && piece?.color === gameState.currentPlayer) {
       setSelectedPiece({
         ...piece,
         position: { row: rowIndex, col: columnIndex },
@@ -61,13 +64,23 @@ const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
       // Deselect the piece after moving
       setSelectedPiece(null);
 
-      setGameState({
-        ...gameState,
-        currentTurn:
-          gameState.currentTurn === PieceColors.White
-            ? PieceColors.Black
-            : PieceColors.White,
-      });
+      // setGameState({
+      //   ...gameState,
+      //   currentPlayer:
+      //     gameState.currentPlayer === PieceColors.White
+      //       ? PieceColors.Black
+      //       : PieceColors.White,
+      // });
+
+      const action: TransformerAction = { type: "TAKE_TURN" };
+
+      setGameState(() =>
+        stateUpdate({
+          gameState,
+          action,
+          transformer: takeTurnTransformer,
+        })
+      );
     }
   };
 
