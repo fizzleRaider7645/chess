@@ -25,6 +25,7 @@ export const RowElement = styled.div`
 export const SquareElement = styled.div<{ $isDark: boolean }>`
   flex-grow: 1;
   display: flex;
+  max-width: 87.5px;
   align-items: center;
   justify-content: center;
   aspect-ratio: 1 / 1; /* Keep the squares */

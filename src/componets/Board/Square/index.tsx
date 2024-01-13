@@ -28,7 +28,7 @@ const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
       selectedPiece
     );
 
-    newBoard[columnIndex][rowIndex] = selectedPiece;
+    newBoard[rowIndex][columnIndex] = selectedPiece;
 
     // setChessBoard(newBoard);
   };
