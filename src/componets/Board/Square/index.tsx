@@ -4,7 +4,8 @@ import { useContext } from "react";
 import { Context } from "../Context";
 import { PieceToRender } from "./subcomponents";
 import { determineIsDark } from "./helpers";
-import { PieceColors, PieceLabels } from "../../Piece/types";
+// import { PieceColors, PieceLabels } from "../../Piece/types";
+import { Board } from "../types";
 
 const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
   const { chessBoard, setChessBoard, selectedPiece, setSelectedPiece } =
@@ -13,6 +14,8 @@ const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
   const isDark = determineIsDark(columnIndex, rowIndex);
 
   const onClickHandler = () => {
+    const newBoard: Board = [...chessBoard];
+
     setSelectedPiece(piece);
     // const pieceToMove = {
     //   label: PieceLabels.Pawn,
@@ -24,6 +27,10 @@ const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
       `rowIndex: ${rowIndex}`,
       selectedPiece
     );
+
+    newBoard[columnIndex][rowIndex] = selectedPiece;
+
+    // setChessBoard(newBoard);
   };
 
   return (
