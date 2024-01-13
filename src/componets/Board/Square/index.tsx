@@ -1,14 +1,14 @@
 import { SquareElement } from "../subcomponents";
 import { SquareProps } from "./types";
 import { useContext } from "react";
-import { Context } from "../Context";
+import { BoardContext } from "../BoardContext";
 import { determineIsDark, isValidDestination } from "./helpers";
 import { PieceColors } from "../../Piece/types";
 import Piece from "../../Piece";
 
 const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
   const { chessBoard, setChessBoard, selectedPiece, setSelectedPiece } =
-    useContext(Context);
+    useContext(BoardContext);
 
   const isDark = determineIsDark(columnIndex, rowIndex);
 
@@ -43,13 +43,13 @@ const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
       })
     ) {
       const {
-        position: { row, col },
+        position: { row: selectedPieceRow, col: selectedPieceCol },
       } = selectedPiece;
-      // Move the piece to the new location
+      // Move the selected piece to the new location
       newBoard[rowIndex][columnIndex] = selectedPiece;
 
-      // Remove the piece from its original location
-      newBoard[row][col] = null;
+      // Remove the selected piece from its original location
+      newBoard[selectedPieceRow][selectedPieceCol] = null;
 
       // Update the board state
       setChessBoard(newBoard);

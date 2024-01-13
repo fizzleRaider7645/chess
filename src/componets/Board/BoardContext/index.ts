@@ -1,8 +1,8 @@
 import { createContext } from "react";
 import { initialBoardSetup } from "./boardState";
-import { ChessboardContextType } from "./types";
+import { BoardContextType } from "./types";
 
-export const Context = createContext<ChessboardContextType>({
+export const BoardContext = createContext<BoardContextType>({
   chessBoard: initialBoardSetup(), // Provide initial setup as default
   setChessBoard: () => {}, // Provide a default no-op function
   selectedPiece: null,

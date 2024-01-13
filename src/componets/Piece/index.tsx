@@ -14,14 +14,14 @@ import BlackKing from "../../assets/pieces/black/king.svg";
 import { SVGImage } from "./subcomponents";
 import { determineIsSelected } from "./helpers";
 import { useContext } from "react";
-import { Context } from "../Board/Context";
+import { BoardContext } from "../Board/BoardContext";
 
 const Piece = ({
   color,
   label,
   position: { row, col },
 }: ChessPiece): JSX.Element => {
-  const { selectedPiece } = useContext(Context);
+  const { selectedPiece } = useContext(BoardContext);
   const pieceMap = {
     [PieceLabels.Pawn]: {
       [PieceColors.White]: WhitePawn,

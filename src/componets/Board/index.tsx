@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Row from "./Row";
 import { Container, ParentContainer } from "./subcomponents";
 import { Board as ChessBoard } from "./types";
-import { initialBoardSetup } from "./Context/boardState";
-import { Context } from "./Context";
+import { initialBoardSetup } from "./BoardContext/boardState";
+import { BoardContext } from "./BoardContext";
 import { Piece } from "../Piece/types";
 
 const Board: React.FC = () => {
@@ -13,13 +13,13 @@ const Board: React.FC = () => {
   return (
     <ParentContainer>
       <Container>
-        <Context.Provider
+        <BoardContext.Provider
           value={{ chessBoard, setChessBoard, selectedPiece, setSelectedPiece }}
         >
           {chessBoard.map((_, rowIndex) => (
             <Row key={`row-${rowIndex}`} rowIndex={rowIndex} />
           ))}
-        </Context.Provider>
+        </BoardContext.Provider>
       </Container>
     </ParentContainer>
   );
