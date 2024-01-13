@@ -12,9 +12,9 @@ import BlackQueen from "../../assets/pieces/black/queen.svg";
 import WhiteKing from "../../assets/pieces/white/king.svg";
 import BlackKing from "../../assets/pieces/black/king.svg";
 import { SVGImage } from "./subcomponents";
+import { determineIsSelected } from "./helpers";
 import { useContext } from "react";
 import { Context } from "../Board/Context";
-import { determineIsSelected } from "./helpers";
 
 const Piece = ({
   color,
@@ -22,7 +22,6 @@ const Piece = ({
   position: { row, col },
 }: ChessPiece): JSX.Element => {
   const { selectedPiece } = useContext(Context);
-
   const pieceMap = {
     [PieceLabels.Pawn]: {
       [PieceColors.White]: WhitePawn,
@@ -62,7 +61,7 @@ const Piece = ({
     <SVGImage
       src={pieceToRender}
       alt={`${color} ${label}`}
-      className={isSelected ? "selected" : ""}
+      $isSelected={isSelected}
     />
   );
 };

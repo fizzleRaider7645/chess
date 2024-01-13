@@ -27,7 +27,12 @@ const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
     // If a piece is selected and the clicked square is a valid destination, move the piece
     if (
       selectedPiece &&
-      isValidDestination({ selectedPiece, rowIndex, columnIndex, chessBoard })
+      isValidDestination({
+        selectedPiece,
+        rowIndex,
+        columnIndex,
+        chessBoard,
+      })
     ) {
       const {
         position: { row, col },
