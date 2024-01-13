@@ -11,6 +11,7 @@ export enum PieceColors {
   White = "white",
   Black = "black",
 }
+
 export interface Piece {
   color: PieceColors;
   label: PieceLabels;

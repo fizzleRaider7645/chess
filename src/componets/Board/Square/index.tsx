@@ -2,8 +2,9 @@ import { SquareElement } from "../subcomponents";
 import { SquareProps } from "./types";
 import { useContext } from "react";
 import { Context } from "../Context";
-import { PieceToRender } from "./subcomponents";
-import { determineIsDark } from "./helpers";
+import { determineIsDark, isValidDestination } from "./helpers";
+import { PieceColors } from "../../Piece/types";
+import Piece from "../../Piece";
 
 const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
   const { chessBoard, setChessBoard, selectedPiece, setSelectedPiece } =
@@ -24,8 +25,8 @@ const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
     }
     // If a piece is selected and the clicked square is a valid destination, move the piece
     else if (
-      selectedPiece //&&
-      // isValidDestination(selectedPiece, rowIndex, columnIndex, chessBoard)
+      selectedPiece &&
+      isValidDestination({ selectedPiece, rowIndex, columnIndex, chessBoard })
     ) {
       const {
         position: { row, col },
@@ -46,11 +47,17 @@ const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
 
   return (
     <SquareElement $isDark={isDark} onClick={onClickHandler}>
-      <PieceToRender
-        piece={piece}
-        rowIndex={rowIndex}
-        columnIndex={columnIndex}
-      />
+      {piece ? (
+        <Piece
+          color={
+            piece.color === PieceColors.White
+              ? PieceColors.White
+              : PieceColors.Black
+          }
+          label={piece.label}
+          position={{ row: rowIndex, col: columnIndex }}
+        />
+      ) : null}
     </SquareElement>
   );
 };
