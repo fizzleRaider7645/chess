@@ -24,6 +24,14 @@ const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
       });
     }
 
+    // if there is a selected piece but the user selects another piece of the same color: the newly selected piece replaces the other selected piece
+    if (selectedPiece && piece?.color === selectedPiece.color) {
+      setSelectedPiece({
+        ...piece,
+        position: { row: rowIndex, col: columnIndex },
+      });
+    }
+
     // If a piece is selected and the clicked square is a valid destination, move the piece
     if (
       selectedPiece &&
