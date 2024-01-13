@@ -5,10 +5,13 @@ import { BoardContext } from "../BoardContext";
 import { determineIsDark, isValidDestination } from "./helpers";
 import { PieceColors } from "../../Piece/types";
 import Piece from "../../Piece";
+import { AppContext } from "../../../AppContext";
 
 const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
   const { chessBoard, setChessBoard, selectedPiece, setSelectedPiece } =
     useContext(BoardContext);
+
+  const { gameState, setGameState } = useContext(AppContext);
 
   const isDark = determineIsDark(columnIndex, rowIndex);
 
@@ -17,7 +20,7 @@ const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
     const newBoard = chessBoard.map((row) => [...row]);
 
     // If no piece is currently selected and the clicked square has a piece, select the piece
-    if (!selectedPiece && piece) {
+    if (!selectedPiece && piece?.color === gameState.currentTurn) {
       setSelectedPiece({
         ...piece,
         position: { row: rowIndex, col: columnIndex },
@@ -56,6 +59,14 @@ const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
 
       // Deselect the piece after moving
       setSelectedPiece(null);
+
+      setGameState({
+        ...gameState,
+        currentTurn:
+          gameState.currentTurn === PieceColors.White
+            ? PieceColors.Black
+            : PieceColors.White,
+      });
     }
   };
 
