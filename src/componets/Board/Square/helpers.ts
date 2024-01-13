@@ -13,12 +13,19 @@ export const isValidDestination = ({
   columnIndex,
   chessBoard,
 }: IsValidDestinationProps): boolean => {
-  if (
-    rowIndex !== selectedPiece.position.row ||
-    columnIndex !== selectedPiece.position.col
-  ) {
-    return true;
+  const selectedSquareContainsPiece = chessBoard[rowIndex][columnIndex];
+
+  /**
+   * Valid if
+   * space is empty
+   * space has piece of opposite color than selectedPiece and move is valid per piece rules
+   *
+   *
+   */
+
+  if (selectedSquareContainsPiece?.color === selectedPiece.color) {
+    return false;
   }
 
-  return false;
+  return true;
 };

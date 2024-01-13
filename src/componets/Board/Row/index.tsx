@@ -6,6 +6,7 @@ import { Context } from "../Context";
 
 const Row: React.FC<RowProps> = ({ rowIndex }) => {
   const { chessBoard } = useContext(Context);
+
   const rowData = chessBoard[rowIndex];
 
   return (

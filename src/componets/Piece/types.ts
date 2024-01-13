@@ -20,3 +20,9 @@ export interface Piece {
     col: number;
   };
 }
+
+export interface DetermineIsSelectedProps {
+  selectedPiece: Piece | null;
+  rowIndex: number;
+  columnIndex: number;
+}
