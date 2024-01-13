@@ -15,6 +15,7 @@ const Square = ({ columnIndex, rowIndex, piece }: SquareProps): JSX.Element => {
 
   const isDark = determineIsDark(columnIndex, rowIndex);
 
+  // This onClickHandler will have to overhauled... there's too much going on... maybe create a custom hook
   const onClickHandler = () => {
     // Clone the current chess board
     const newBoard = chessBoard.map((row) => [...row]);

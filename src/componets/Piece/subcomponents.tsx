@@ -11,6 +11,8 @@ export const SVGImage = styled.img<{ $isSelected: boolean }>`
     $isSelected &&
     css`
       outline: 2px solid lightblue;
+      box-shadow: 0 0 10px lightblue;
+      animation: ${popAnimation} 0.5s ease;
     `}
   &:hover {
     cursor: pointer;

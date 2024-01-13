@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { gameState } from "./AppContext/gameState";
+import { initialGameState } from "./AppContext/gameState";
 import { GameState } from "./AppContext/types";
 import Board from "./componets/Board";
 import { AppContext } from "./AppContext";
 
 function App() {
-  const [getGameState, setGameState] = useState<GameState>(gameState);
+  const [gameState, setGameState] = useState<GameState>(initialGameState);
 
   return (
-    <AppContext.Provider value={{ gameState: getGameState, setGameState }}>
+    <AppContext.Provider value={{ gameState, setGameState }}>
       <Board />
     </AppContext.Provider>
   );
