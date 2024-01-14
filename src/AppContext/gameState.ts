@@ -15,7 +15,7 @@ export const updateGameState = (
   const boardCopy = board.map((row) => [...row]);
   const updatedState: GameState = {
     ...gameState,
-    turn: gameState.turn++,
+    turn: ++gameState.turn,
     currentPlayer:
       gameState.currentPlayer === PieceColors.White
         ? PieceColors.Black
