@@ -6,8 +6,7 @@ export const determineIsSelected = ({
   columnIndex,
 }: DetermineIsSelectedProps): boolean => {
   return !!(
-    selectedPiece &&
-    selectedPiece.position.row === rowIndex &&
-    selectedPiece.position.col === columnIndex
+    selectedPiece?.position?.row === rowIndex &&
+    selectedPiece?.position?.col === columnIndex
   );
 };

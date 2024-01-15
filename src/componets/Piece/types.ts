@@ -12,13 +12,15 @@ export enum PieceColors {
   Black = "black",
 }
 
+export interface Position {
+  row: number;
+  col: number;
+}
+
 export interface Piece {
   color: PieceColors;
   label: PieceLabels;
-  position: {
-    row: number;
-    col: number;
-  };
+  position: Position;
 }
 
 export interface DetermineIsSelectedProps {

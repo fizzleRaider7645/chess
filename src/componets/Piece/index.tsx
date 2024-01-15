@@ -22,6 +22,7 @@ const Piece = ({
   position: { row, col },
 }: ChessPiece): JSX.Element => {
   const { selectedPiece } = useContext(BoardContext);
+
   const pieceMap = {
     [PieceLabels.Pawn]: {
       [PieceColors.White]: WhitePawn,
