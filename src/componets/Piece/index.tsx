@@ -16,6 +16,12 @@ import { determineIsSelected } from "./helpers";
 import { useContext } from "react";
 import { BoardContext } from "../Board/BoardContext";
 
+/**
+ * Rethink Piece because we need a way to actually keep track
+ * of the individual pieces and store move history
+ *
+ */
+
 const Piece = ({
   color,
   label,
