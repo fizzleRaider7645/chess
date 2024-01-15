@@ -7,10 +7,16 @@ export interface GameFrame {
   boardState: Board;
 }
 
-export interface GameState {
+export interface GameData {
   turn: number;
   currentPlayer: PieceColors.White | PieceColors.Black;
   gameFrames: Board[];
+}
+
+export interface GameState {
+  turn: number;
+  currentPlayer: PieceColors.White | PieceColors.Black;
+  data: GameData;
 }
 
 export interface AppContextType {

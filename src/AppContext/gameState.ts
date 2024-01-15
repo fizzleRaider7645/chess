@@ -5,22 +5,28 @@ import { GameState } from "./types";
 export const initialGameState: GameState = {
   turn: 0,
   currentPlayer: PieceColors.White,
-  gameFrames: [],
+  data: { turn: 0, currentPlayer: PieceColors.White, gameFrames: [] },
 };
 
 export const updateGameState = (
   board: Board,
   gameState: GameState
 ): GameState => {
+  const gameStateCopy = { ...gameState };
   const boardCopy = board.map((row) => [...row]);
   const updatedState: GameState = {
-    ...gameState,
-    turn: ++gameState.turn,
+    ...gameStateCopy,
+    turn: ++gameStateCopy.turn,
     currentPlayer:
-      gameState.currentPlayer === PieceColors.White
+      gameStateCopy.currentPlayer === PieceColors.White
         ? PieceColors.Black
         : PieceColors.White,
-    gameFrames: [...gameState.gameFrames, boardCopy],
+    data: {
+      ...gameStateCopy.data,
+      turn: gameStateCopy.turn,
+      currentPlayer: gameStateCopy.currentPlayer,
+      gameFrames: [...gameStateCopy.data.gameFrames, boardCopy],
+    },
   };
 
   return updatedState;
