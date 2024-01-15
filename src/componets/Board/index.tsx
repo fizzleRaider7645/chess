@@ -5,16 +5,24 @@ import { Board as ChessBoard } from "./types";
 import { initialBoardSetup } from "./BoardContext/boardState";
 import { BoardContext } from "./BoardContext";
 import { Piece } from "../Piece/types";
+import { SquareProps } from "./Square/types";
 
 const Board: React.FC = () => {
   const [chessBoard, setChessBoard] = useState<ChessBoard>(initialBoardSetup());
-  const [selectedPiece, setSelectedPiece] = useState<Piece | null>(null);
+  const [selectedSquare, setSelectedSquare] = useState<SquareProps | null>(
+    null
+  );
 
   return (
     <ParentContainer>
       <Container>
         <BoardContext.Provider
-          value={{ chessBoard, setChessBoard, selectedPiece, setSelectedPiece }}
+          value={{
+            chessBoard,
+            setChessBoard,
+            selectedSquare,
+            setSelectedSquare,
+          }}
         >
           {chessBoard.map((_, rowIndex) => (
             <Row key={`row-${rowIndex}`} rowIndex={rowIndex} />
