@@ -1,75 +1,42 @@
-import { PieceLabels, Piece as ChessPiece, PieceColors } from "./types";
-import WhitePawn from "../../assets/pieces/white/pawn.svg";
-import BlackPawn from "../../assets/pieces/black/pawn.svg";
-import WhiteRook from "../../assets/pieces/white/rook.svg";
-import BlackRook from "../../assets/pieces/black/rook.svg";
-import WhiteKnight from "../../assets/pieces/white/knight.svg";
-import BlackKnight from "../../assets/pieces/black/knight.svg";
-import WhiteBishop from "../../assets/pieces/white/bishop.svg";
-import BlackBishop from "../../assets/pieces/black/bishop.svg";
-import WhiteQueen from "../../assets/pieces/white/queen.svg";
-import BlackQueen from "../../assets/pieces/black/queen.svg";
-import WhiteKing from "../../assets/pieces/white/king.svg";
-import BlackKing from "../../assets/pieces/black/king.svg";
+import {
+  // PieceLabels,
+  // Piece as ChessPiece,
+  // PieceColors,
+  PieceProps,
+  Piece as PieceType,
+} from "./types";
 import { SVGImage } from "./subcomponents";
-import { determineIsSelected } from "./helpers";
-import { useContext } from "react";
+import { determineIsSelected, pieceMap } from "./helpers";
+import { useContext, useState } from "react";
 import { BoardContext } from "../Board/BoardContext";
 
-/**
- * Rethink Piece because we need a way to actually keep track
- * of the individual pieces and store move history
- *
- */
+const Piece = ({ position: startingPositon }: PieceProps): JSX.Element | "" => {
+  const { selectedPiece, chessBoard } = useContext(BoardContext);
 
-const Piece = ({
-  color,
-  label,
-  position: { row, col },
-}: ChessPiece): JSX.Element => {
-  const { selectedPiece } = useContext(BoardContext);
+  const [moveHistory, setMoveHistory] = useState([startingPositon]);
 
-  const pieceMap = {
-    [PieceLabels.Pawn]: {
-      [PieceColors.White]: WhitePawn,
-      [PieceColors.Black]: BlackPawn,
-    },
-    [PieceLabels.Rook]: {
-      [PieceColors.White]: WhiteRook,
-      [PieceColors.Black]: BlackRook,
-    },
-    [PieceLabels.Knight]: {
-      [PieceColors.White]: WhiteKnight,
-      [PieceColors.Black]: BlackKnight,
-    },
-    [PieceLabels.Bishop]: {
-      [PieceColors.White]: WhiteBishop,
-      [PieceColors.Black]: BlackBishop,
-    },
-    [PieceLabels.Queen]: {
-      [PieceColors.White]: WhiteQueen,
-      [PieceColors.Black]: BlackQueen,
-    },
-    [PieceLabels.King]: {
-      [PieceColors.White]: WhiteKing,
-      [PieceColors.Black]: BlackKing,
-    },
-  };
+  const currentPosition = moveHistory[moveHistory.length - 1];
 
-  const pieceToRender = pieceMap[label]?.[color];
+  const pieceData: PieceType | null =
+    chessBoard[currentPosition?.row][currentPosition?.col];
+
+  const pieceToRender =
+    (pieceData && pieceMap[pieceData.label]?.[pieceData.color]) ?? "";
 
   const isSelected = determineIsSelected({
     selectedPiece,
-    rowIndex: row,
-    columnIndex: col,
+    rowIndex: currentPosition?.row,
+    columnIndex: currentPosition?.col,
   });
 
-  return (
+  return pieceToRender ? (
     <SVGImage
       src={pieceToRender}
-      alt={`${color} ${label}`}
+      alt={`${pieceData?.color} ${pieceData?.label}`}
       $isSelected={isSelected}
     />
+  ) : (
+    ""
   );
 };
 

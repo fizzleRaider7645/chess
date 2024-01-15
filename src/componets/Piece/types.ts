@@ -23,6 +23,8 @@ export interface Piece {
   position: Position;
 }
 
+export type PieceProps = Omit<Piece, "color" | "label">;
+
 export interface DetermineIsSelectedProps {
   selectedPiece: Piece | null;
   rowIndex: number;

@@ -11,12 +11,12 @@ const Row: React.FC<RowProps> = ({ rowIndex }) => {
 
   return (
     <RowElement key={`row-${rowIndex}`}>
-      {rowData.map((piece, columnIndex) => (
+      {rowData.map((_, columnIndex) => (
         <Square
           key={`square-${rowIndex}-${columnIndex}`}
           rowIndex={rowIndex}
           columnIndex={columnIndex}
-          piece={piece}
+          // piece={piece}
         />
       ))}
     </RowElement>
