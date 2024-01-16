@@ -4,7 +4,6 @@ import { Board } from "../types";
 export interface SquareProps {
   rowIndex: number;
   columnIndex: number;
-  // piece: Piece | null;
 }
 
 export interface IsValidDestinationProps {

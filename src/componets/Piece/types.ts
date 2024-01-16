@@ -1,3 +1,5 @@
+import { SquareProps } from "../Board/Square/types";
+
 export enum PieceLabels {
   Pawn = "PAWN",
   Knight = "KNIGHT",
@@ -26,7 +28,7 @@ export interface Piece {
 export type PieceProps = Omit<Piece, "color" | "label">;
 
 export interface DetermineIsSelectedProps {
-  selectedPiece: Piece | null;
+  selectedSquare: SquareProps | null;
   rowIndex: number;
   columnIndex: number;
 }

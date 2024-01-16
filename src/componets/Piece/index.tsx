@@ -1,17 +1,11 @@
-import {
-  // PieceLabels,
-  // Piece as ChessPiece,
-  // PieceColors,
-  PieceProps,
-  Piece as PieceType,
-} from "./types";
+import { PieceProps, Piece as PieceType } from "./types";
 import { SVGImage } from "./subcomponents";
 import { determineIsSelected, pieceMap } from "./helpers";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BoardContext } from "../Board/BoardContext";
 
 const Piece = ({ position: startingPositon }: PieceProps): JSX.Element | "" => {
-  const { selectedPiece, chessBoard } = useContext(BoardContext);
+  const { selectedSquare, chessBoard } = useContext(BoardContext);
 
   const [moveHistory, setMoveHistory] = useState([startingPositon]);
 
@@ -24,10 +18,12 @@ const Piece = ({ position: startingPositon }: PieceProps): JSX.Element | "" => {
     (pieceData && pieceMap[pieceData.label]?.[pieceData.color]) ?? "";
 
   const isSelected = determineIsSelected({
-    selectedPiece,
+    selectedSquare,
     rowIndex: currentPosition?.row,
     columnIndex: currentPosition?.col,
   });
+
+  useEffect(() => {}, [selectedSquare?.rowIndex, selectedSquare?.columnIndex]);
 
   return pieceToRender ? (
     <SVGImage

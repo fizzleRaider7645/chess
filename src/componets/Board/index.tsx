@@ -4,7 +4,6 @@ import { Container, ParentContainer } from "./subcomponents";
 import { Board as ChessBoard } from "./types";
 import { initialBoardSetup } from "./BoardContext/boardState";
 import { BoardContext } from "./BoardContext";
-import { Piece } from "../Piece/types";
 import { SquareProps } from "./Square/types";
 
 const Board: React.FC = () => {

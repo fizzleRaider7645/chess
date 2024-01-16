@@ -17,13 +17,13 @@ export const generateUniqueId = () => {
 };
 
 export const determineIsSelected = ({
-  selectedPiece,
+  selectedSquare,
   rowIndex,
   columnIndex,
 }: DetermineIsSelectedProps): boolean => {
   return !!(
-    selectedPiece?.position?.row === rowIndex &&
-    selectedPiece?.position?.col === columnIndex
+    selectedSquare?.rowIndex === rowIndex &&
+    selectedSquare?.columnIndex === columnIndex
   );
 };
 
@@ -53,3 +53,7 @@ export const pieceMap = {
     [PieceColors.Black]: BlackKing,
   },
 };
+
+/**
+ * create moveTo function
+ */
