@@ -4,6 +4,9 @@ import { determineIsSelected, pieceMap } from "./helpers";
 import { useContext, useEffect, useState } from "react";
 import { BoardContext } from "../Board/BoardContext";
 
+/**
+ * clean this up
+ */
 const Piece = ({ position: startingPositon }: PieceProps): JSX.Element | "" => {
   const { selectedSquare, chessBoard } = useContext(BoardContext);
 
