@@ -16,7 +16,6 @@ const Row: React.FC<RowProps> = ({ rowIndex }) => {
           key={`square-${rowIndex}-${columnIndex}`}
           rowIndex={rowIndex}
           columnIndex={columnIndex}
-          // piece={piece}
         />
       ))}
     </RowElement>

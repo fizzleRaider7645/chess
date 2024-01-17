@@ -57,3 +57,4 @@ export const pieceMap = {
 /**
  * create moveTo function
  */
+const moveTo = (startingPosition, destination) => {};

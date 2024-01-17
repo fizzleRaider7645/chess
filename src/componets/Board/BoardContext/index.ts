@@ -7,4 +7,6 @@ export const BoardContext = createContext<BoardContextType>({
   setChessBoard: () => {}, // Provide a default no-op function
   selectedSquare: null,
   setSelectedSquare: () => {},
+  selectedPiece: null,
+  setSelectedPiece: () => {},
 });
