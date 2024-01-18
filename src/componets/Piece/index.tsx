@@ -9,8 +9,8 @@ import { BoardContext } from "../Board/BoardContext";
  */
 const Piece = ({ position: startingPositon }: PieceProps): JSX.Element | "" => {
   const { selectedSquare, chessBoard } = useContext(BoardContext);
-
   const [moveHistory, setMoveHistory] = useState([startingPositon]);
+  const [isSelected, setIsSelected] = useState(false);
 
   const currentPosition = moveHistory[moveHistory.length - 1];
 
@@ -20,11 +20,19 @@ const Piece = ({ position: startingPositon }: PieceProps): JSX.Element | "" => {
   const pieceToRender =
     (pieceData && pieceMap[pieceData.label]?.[pieceData.color]) ?? "";
 
-  const isSelected = determineIsSelected({
+  const isPieceOnSelectedSquare: boolean = determineIsSelected({
     selectedSquare,
     rowIndex: currentPosition?.row,
     columnIndex: currentPosition?.col,
   });
+
+  const onClickHandler = (isPieceOnSelectedSquare, setIsSelected) => {
+    if (isPieceOnSelectedSquare) {
+      setIsSelected(true);
+    } else {
+      setIsSelected(false);
+    }
+  };
 
   useEffect(() => {}, [selectedSquare?.rowIndex, selectedSquare?.columnIndex]);
 
@@ -33,6 +41,7 @@ const Piece = ({ position: startingPositon }: PieceProps): JSX.Element | "" => {
       src={pieceToRender}
       alt={`${pieceData?.color} ${pieceData?.label}`}
       $isSelected={isSelected}
+      onClick={() => onClickHandler(isPieceOnSelectedSquare, setIsSelected)}
     />
   ) : (
     ""
