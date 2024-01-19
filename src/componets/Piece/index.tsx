@@ -8,14 +8,12 @@ import { BoardContext } from "../Board/BoardContext";
  * clean this up
  */
 const Piece = ({ position: startingPositon }: PieceProps): JSX.Element | "" => {
-  const [moveHistory, setMoveHistory] = useState([startingPositon]);
-
-  const currentPosition = moveHistory[moveHistory.length - 1];
-
   const { selectedSquare, chessBoard, selectedPiece, setSelectedPiece } =
     useContext(BoardContext);
 
-  const [isSelected, setIsSelected] = useState(false);
+  const [moveHistory, setMoveHistory] = useState([startingPositon]);
+
+  const currentPosition = moveHistory[moveHistory.length - 1];
 
   const pieceData: PieceType | null =
     chessBoard[currentPosition?.row][currentPosition?.col];
@@ -23,24 +21,13 @@ const Piece = ({ position: startingPositon }: PieceProps): JSX.Element | "" => {
   const pieceToRender =
     (pieceData && pieceMap[pieceData.label]?.[pieceData.color]) ?? "";
 
-  const onClickHandler = (isPieceOnSelectedSquare, setIsSelected) => {
-    if (isPieceOnSelectedSquare) {
-      setIsSelected(true);
-    } else {
-      setIsSelected(false);
-    }
-  };
+  const isSelected = determineIsSelected({
+    selectedSquare,
+    rowIndex: currentPosition?.row,
+    columnIndex: currentPosition?.col,
+  });
 
-  useEffect(() => {
-    setIsSelected(
-      determineIsSelected({
-        selectedSquare,
-        rowIndex: currentPosition?.row,
-        columnIndex: currentPosition?.col,
-      })
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedSquare?.rowIndex, selectedSquare?.columnIndex]);
+  useEffect(() => {}, [selectedSquare?.rowIndex, selectedSquare?.columnIndex]);
 
   return pieceToRender ? (
     <SVGImage
