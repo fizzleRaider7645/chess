@@ -13,5 +13,5 @@ export interface BoardContextType {
   selectedSquare: SquareProps | null;
   setSelectedSquare: React.Dispatch<React.SetStateAction<SquareProps | null>>;
   selectedPieceData: PieceData | null;
-  setSelectedPieceData: React.Dispatch<React.SetStateAction<PieceData>>;
+  setSelectedPieceData: React.Dispatch<React.SetStateAction<PieceData | null>>;
 }

@@ -10,6 +10,7 @@ const Piece = ({ position: startingPositon }: PieceProps): JSX.Element | "" => {
     chessBoard,
     selectedPieceData,
     setSelectedPieceData,
+    setChessBoard,
   } = useContext(BoardContext);
 
   const [moveHistory, setMoveHistory] = useState([startingPositon]);
@@ -37,7 +38,13 @@ const Piece = ({ position: startingPositon }: PieceProps): JSX.Element | "" => {
         position: currentPosition,
       });
 
-      movePiece({ pieceData: selectedPieceData });
+      movePiece({
+        pieceData: selectedPieceData,
+        boardState: chessBoard,
+        setSelectedPieceData,
+        selectedSquare,
+        setChessBoard,
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSquare?.rowIndex, selectedSquare?.columnIndex]);

@@ -12,10 +12,9 @@ const Board: React.FC = () => {
   const [selectedSquare, setSelectedSquare] = useState<SquareProps | null>(
     null
   );
-  const [selectedPieceData, setSelectedPieceData] = useState<PieceData>({
-    piece: null,
-    position: null,
-  });
+  const [selectedPieceData, setSelectedPieceData] = useState<PieceData | null>(
+    null
+  );
 
   return (
     <ParentContainer>

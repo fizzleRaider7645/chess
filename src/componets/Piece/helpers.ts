@@ -1,9 +1,4 @@
-import {
-  DetermineIsSelectedProps,
-  PieceColors,
-  PieceLabels,
-  Piece,
-} from "./types";
+import { DetermineIsSelectedProps, PieceColors, PieceLabels } from "./types";
 import WhitePawn from "../../assets/pieces/white/pawn.svg";
 import BlackPawn from "../../assets/pieces/black/pawn.svg";
 import WhiteRook from "../../assets/pieces/white/rook.svg";
@@ -81,10 +76,11 @@ interface MoveToProps {
   pieceData: PieceData | null;
   boardState: Board;
   selectedSquare: SquareProps | null;
-  setChessBoard: React.Dispatch<React.SetStateAction<Board | null>>;
+  setChessBoard: React.Dispatch<React.SetStateAction<Board>>;
   setSelectedPieceData: React.Dispatch<React.SetStateAction<PieceData | null>>;
 }
 
+// I hate this + make all this better
 export const movePiece = ({
   pieceData,
   boardState,
