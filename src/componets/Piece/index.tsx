@@ -8,7 +8,7 @@ import { BoardContext } from "../Board/BoardContext";
  * clean this up
  */
 const Piece = ({ position: startingPositon }: PieceProps): JSX.Element | "" => {
-  const { selectedSquare, chessBoard, selectedPiece, setSelectedPiece } =
+  const { selectedSquare, chessBoard, setSelectedPiece } =
     useContext(BoardContext);
 
   const [moveHistory, setMoveHistory] = useState([startingPositon]);
@@ -27,7 +27,12 @@ const Piece = ({ position: startingPositon }: PieceProps): JSX.Element | "" => {
     columnIndex: currentPosition?.col,
   });
 
-  useEffect(() => {}, [selectedSquare?.rowIndex, selectedSquare?.columnIndex]);
+  useEffect(() => {
+    if (isSelected) {
+      setSelectedPiece(pieceData);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedSquare?.rowIndex, selectedSquare?.columnIndex]);
 
   return pieceToRender ? (
     <SVGImage
