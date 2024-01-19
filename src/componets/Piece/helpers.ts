@@ -1,4 +1,9 @@
-import { DetermineIsSelectedProps, PieceColors, PieceLabels } from "./types";
+import {
+  DetermineIsSelectedProps,
+  PieceColors,
+  PieceLabels,
+  Piece,
+} from "./types";
 import WhitePawn from "../../assets/pieces/white/pawn.svg";
 import BlackPawn from "../../assets/pieces/black/pawn.svg";
 import WhiteRook from "../../assets/pieces/white/rook.svg";
@@ -11,6 +16,9 @@ import WhiteQueen from "../../assets/pieces/white/queen.svg";
 import BlackQueen from "../../assets/pieces/black/queen.svg";
 import WhiteKing from "../../assets/pieces/white/king.svg";
 import BlackKing from "../../assets/pieces/black/king.svg";
+import { Board } from "../Board/types";
+import { PieceData } from "../Board/BoardContext/types";
+import { SquareProps } from "../Board/Square/types";
 
 export const generateUniqueId = () => {
   return Math.random().toString(36).substring(7);
@@ -54,4 +62,48 @@ export const pieceMap = {
   },
 };
 
-export const movePiece = () => {};
+/**
+ * what does it mean to move a piece (not in a deep sense)?
+ * a piece is selected
+ *  - a piece is selectable if it's that color's turn
+ *  - a piece is selected when a user clicks on a square with that  piece
+ * a square is selected
+ *  - a square is selected when a piece is on it
+ *  - a piece is placed on that square if a piece is selected
+ *  - a piece is placed on that square if it is empty
+ *  - a piece is placed on that square if it's a valid move for that piece
+ * the piece is moved to that square
+ *  - that square now containeds the piece
+ *  - the piece's previous square is not empty
+ */
+
+interface MoveToProps {
+  pieceData: PieceData | null;
+  boardState: Board;
+  selectedSquare: SquareProps | null;
+  setChessBoard: React.Dispatch<React.SetStateAction<Board | null>>;
+  setSelectedPieceData: React.Dispatch<React.SetStateAction<PieceData | null>>;
+}
+
+export const movePiece = ({
+  pieceData,
+  boardState,
+  selectedSquare,
+  setSelectedPieceData,
+  setChessBoard,
+}: MoveToProps): void => {
+  const boardCopy = boardState.map((row) => [...row]);
+  if (
+    pieceData?.piece &&
+    pieceData?.position &&
+    selectedSquare &&
+    selectedSquare.rowIndex !== pieceData.position.row &&
+    selectedSquare.columnIndex !== pieceData.position.col
+  ) {
+    boardCopy[selectedSquare.rowIndex][selectedSquare.columnIndex] =
+      pieceData.piece;
+    boardCopy[pieceData.position.row][pieceData.position.col] = null;
+    setChessBoard(boardCopy);
+    setSelectedPieceData(null);
+  }
+};
