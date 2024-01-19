@@ -29,3 +29,7 @@ export const isValidDestination = ({
 
   return true;
 };
+
+export const handleSquareClicks = (
+  setBoardState: React.Dispatch<React.SetStateAction<SquareProps | null>>
+) => {};

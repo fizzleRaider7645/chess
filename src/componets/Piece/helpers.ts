@@ -60,23 +60,4 @@ export const pieceMap = {
   },
 };
 
-export const moveTo = (
-  {
-    currentPosition,
-    nextPosition,
-  }: { currentPosition: Position; nextPosition: Position },
-  boardState: Board
-): Board => {
-  const boardCopy = boardState.map((row) => [...row]);
-  const { row: currentRow, col: currentCol } = currentPosition;
-  const { row: nextRow, col: nextCol } = nextPosition;
-
-  const selectedPiece = boardCopy[currentRow][currentCol];
-
-  if (selectedPiece) {
-    boardCopy[currentRow][currentCol] = null;
-    boardCopy[nextRow][nextCol] = selectedPiece;
-  }
-
-  return boardCopy;
-};
+export const movePiece = () => {};
