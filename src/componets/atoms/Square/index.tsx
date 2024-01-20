@@ -1,9 +1,9 @@
-import { SquareElement } from "../subcomponents";
+import { SquareElement } from "../../organisms/Board/subcomponents";
 import { SquareProps } from "./types";
 import { useContext } from "react";
-import { BoardContext } from "../BoardContext";
+import { BoardContext } from "../../../contexts/BoardContext";
 import { determineIsDark } from "./helpers";
-import Piece from "../../Piece";
+import Piece from "../Piece";
 
 const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
   const { setSelectedSquare } = useContext(BoardContext);

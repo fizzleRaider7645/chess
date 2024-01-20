@@ -1,6 +1,6 @@
-import { Piece, Position } from "../../Piece/types";
-import { SquareProps } from "../Square/types";
-import { Board } from "../types";
+import { Piece, Position } from "../../componets/atoms/Piece/types";
+import { SquareProps } from "../../componets/atoms/Square/types";
+import { Board } from "../../componets/organisms/Board/types";
 
 export interface PieceData {
   piece: Piece | null;

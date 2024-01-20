@@ -1,6 +1,6 @@
-import { size } from "../../../const";
-import { PieceColors, PieceLabels } from "../../Piece/types";
-import { Board } from "../types";
+import { size } from "../../const";
+import { PieceColors, PieceLabels } from "../../componets/atoms/Piece/types";
+import { Board } from "../../componets/organisms/Board/types";
 
 export const boardState: Board = Array(size)
   .fill(null)

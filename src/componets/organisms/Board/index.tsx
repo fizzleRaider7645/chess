@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Row from "./Row";
+import Row from "../../molecules/Row";
 import { Container, ParentContainer } from "./subcomponents";
 import { Board as ChessBoard } from "./types";
-import { initialBoardSetup } from "./BoardContext/boardState";
-import { BoardContext } from "./BoardContext";
-import { SquareProps } from "./Square/types";
-import { PieceData } from "./BoardContext/types";
+import { initialBoardSetup } from "../../../contexts/BoardContext/boardState";
+import { BoardContext } from "../../../contexts/BoardContext";
+import { SquareProps } from "../../atoms/Square/types";
+import { PieceData } from "../../../contexts/BoardContext/types";
 
 const Board: React.FC = () => {
   const [chessBoard, setChessBoard] = useState<ChessBoard>(initialBoardSetup());

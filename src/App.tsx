@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { initialGameState } from "./AppContext/gameState";
-import { GameState } from "./AppContext/types";
-import Board from "./componets/Board";
-import { AppContext } from "./AppContext";
+import { initialGameState } from "./contexts/AppContext/gameState";
+import { GameState } from "./contexts/AppContext/types";
+import Board from "./componets/organisms/Board";
+import { AppContext } from "./contexts/AppContext";
 
 function App() {
   const [gameState, setGameState] = useState<GameState>(initialGameState);

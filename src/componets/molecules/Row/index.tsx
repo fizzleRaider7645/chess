@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import Square from "../Square";
-import { RowElement } from "../subcomponents";
+import Square from "../../atoms/Square";
+import { RowElement } from "../../organisms/Board/subcomponents";
 import { RowProps } from "./types";
-import { BoardContext } from "../BoardContext";
+import { BoardContext } from "../../../contexts/BoardContext";
 
 const Row: React.FC<RowProps> = ({ rowIndex }) => {
   const { chessBoard } = useContext(BoardContext);

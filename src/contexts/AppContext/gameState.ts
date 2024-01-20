@@ -1,5 +1,5 @@
-import { Board } from "../componets/Board/types";
-import { PieceColors } from "../componets/Piece/types";
+import { Board } from "../../componets/organisms/Board/types";
+import { PieceColors } from "../../componets/atoms/Piece/types";
 import { GameState } from "./types";
 
 export const initialGameState: GameState = {
