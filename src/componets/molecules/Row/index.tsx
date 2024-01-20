@@ -1,17 +1,18 @@
-import React, { useContext } from "react";
+import React from "react";
 import Square from "../../atoms/Square";
 import { RowElement } from "../../organisms/Board/subcomponents";
 import { RowProps } from "./types";
-import { BoardContext } from "../../../contexts/BoardContext";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 
 const Row: React.FC<RowProps> = ({ rowIndex }) => {
-  const { chessBoard } = useContext(BoardContext);
+  const chessBoard = useSelector(({ board }: RootState) => board);
 
-  const rowData = chessBoard[rowIndex];
+  const rowState = chessBoard[rowIndex];
 
   return (
     <RowElement key={`row-${rowIndex}`}>
-      {rowData.map((_, columnIndex) => (
+      {rowState.map((_, columnIndex) => (
         <Square
           key={`square-${rowIndex}-${columnIndex}`}
           rowIndex={rowIndex}
