@@ -1,7 +1,6 @@
 import { PieceProps, Piece as PieceType } from "./types";
 import { SVGImage } from "./subcomponents";
-import { determineIsSelected, pieceMap } from "./helpers";
-// import { useContext, useEffect } from "react";
+import { pieceMap } from "./helpers";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 
@@ -17,14 +16,6 @@ const Piece = ({ position }: PieceProps): JSX.Element | "" => {
     (pieceOnSelectedSquare &&
       pieceMap[pieceOnSelectedSquare.label]?.[pieceOnSelectedSquare.color]) ??
     "";
-
-  // const isSelected = determineIsSelected({
-  //   selectedSquare,
-  //   rowIndex: position?.row,
-  //   columnIndex: position?.col,
-  // });
-
-  // useEffect(() => {}, [selectedSquare?.rowIndex, selectedSquare?.columnIndex]);
 
   return pieceToRender ? (
     <SVGImage

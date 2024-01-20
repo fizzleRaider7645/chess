@@ -2,19 +2,45 @@ import { SquareElement } from "../../organisms/Board/subcomponents";
 import { SquareProps } from "./types";
 import { determineIsDark } from "./helpers";
 import Piece from "../Piece";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  movePiece,
+  updateSelectedSquare,
+} from "../../../features/board/boardSlice";
 import { RootState } from "../../../store";
-import { useDispatch } from "react-redux";
-import { updateSelectedSquare } from "../../../features/board/boardSlice";
 
 const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
   const dispatch = useDispatch();
+  const { selectedSquare, selectedPiece, board } = useSelector(
+    ({ boardState }: RootState) => ({
+      selectedSquare: boardState.selectedSquare,
+      selectedPiece: boardState.selectedPiece,
+      board: boardState.board,
+    })
+  );
   const isDark = determineIsDark(columnIndex, rowIndex);
 
   const onClickHandler = () => {
-    dispatch(updateSelectedSquare({ col: columnIndex, row: rowIndex }));
-  };
+    const currentPosition = { col: columnIndex, row: rowIndex };
+    const pieceAtCurrentPosition = board[rowIndex][columnIndex];
 
+    if (
+      selectedSquare &&
+      selectedPiece &&
+      (selectedSquare.row !== rowIndex || selectedSquare.col !== columnIndex)
+    ) {
+      // A piece is already selected, and a different square is clicked, try to move
+      dispatch(
+        movePiece({
+          currentPosition: selectedSquare,
+          nextPosition: currentPosition,
+        })
+      );
+    } else if (pieceAtCurrentPosition) {
+      // No piece is selected, and the clicked square has a piece, select this square and piece
+      dispatch(updateSelectedSquare(currentPosition));
+    }
+  };
   return (
     <SquareElement $isDark={isDark} onClick={onClickHandler}>
       <Piece position={{ row: rowIndex, col: columnIndex }} />
