@@ -1,16 +1,12 @@
-import { useState } from "react";
-import { initialGameState } from "./AppContext/gameState";
-import { GameState } from "./AppContext/types";
-import Board from "./componets/Board";
-import { AppContext } from "./AppContext";
+import Board from "./componets/organisms/Board";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 function App() {
-  const [gameState, setGameState] = useState<GameState>(initialGameState);
-
   return (
-    <AppContext.Provider value={{ gameState, setGameState }}>
+    <Provider store={store}>
       <Board />
-    </AppContext.Provider>
+    </Provider>
   );
 }
 

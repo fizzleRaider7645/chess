@@ -1,4 +1,4 @@
-import { SquareProps } from "../Board/Square/types";
+import { SquareProps } from "../Square/types";
 
 export enum PieceLabels {
   Pawn = "PAWN",
