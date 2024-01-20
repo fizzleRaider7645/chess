@@ -13,6 +13,7 @@ const boardStateSlice = createSlice({
   name: "boardState",
   initialState,
   reducers: {
+    // make reducers pure / only input
     movePiece: (state, { payload }: PayloadAction<MoveActionType>) => {
       const { currentPosition, nextPosition } = payload;
 
