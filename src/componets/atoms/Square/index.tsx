@@ -4,15 +4,15 @@ import { determineIsDark } from "./helpers";
 import Piece from "../Piece";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
+import { useDispatch } from "react-redux";
+import { updateSelectedSquare } from "../../../features/board/boardSlice";
 
 const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
-  const selectedSquare = useSelector(
-    ({ boardState: { selectedSquare } }: RootState) => selectedSquare
-  );
+  const dispatch = useDispatch();
   const isDark = determineIsDark(columnIndex, rowIndex);
 
   const onClickHandler = () => {
-    // setSelectedSquare({ columnIndex, rowIndex });
+    dispatch(updateSelectedSquare({ col: columnIndex, row: rowIndex }));
   };
 
   return (

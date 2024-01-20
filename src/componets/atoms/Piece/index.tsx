@@ -6,7 +6,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 
 const Piece = ({ position }: PieceProps): JSX.Element | "" => {
-  const chessBoard = useSelector(({ board }: RootState) => board);
+  const chessBoard = useSelector(
+    ({ boardState: { board } }: RootState) => board
+  );
 
   const pieceOnSelectedSquare: PieceType | null =
     chessBoard[position?.row][position?.col];

@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialBoardSetup } from "./helpers";
 import { BoardState } from "./types";
+import { Position } from "../../componets/atoms/Piece/types";
 
 const initialState: BoardState = {
   board: initialBoardSetup(),
@@ -12,10 +13,14 @@ const boardStateSlice = createSlice({
   initialState,
   reducers: {
     movePiece: () => {},
-    updateBoard: () => {},
+    revert: () => {},
+    updateSelectedSquare: (state, action: PayloadAction<Position>) => {
+      state.selectedSquare = action.payload;
+    },
   },
 });
 
-export const { movePiece, updateBoard } = boardStateSlice.actions;
+export const { movePiece, revert, updateSelectedSquare } =
+  boardStateSlice.actions;
 
 export default boardStateSlice.reducer;
