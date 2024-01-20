@@ -11,6 +11,7 @@ import { RootState } from "../../../store";
 
 const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
   const dispatch = useDispatch();
+
   const { selectedSquare, selectedPiece, board } = useSelector(
     ({ boardState }: RootState) => ({
       selectedSquare: boardState.selectedSquare,
@@ -18,6 +19,7 @@ const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
       board: boardState.board,
     })
   );
+
   const isDark = determineIsDark(columnIndex, rowIndex);
 
   const onClickHandler = () => {
@@ -41,6 +43,7 @@ const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
       dispatch(updateSelectedSquare(currentPosition));
     }
   };
+
   return (
     <SquareElement $isDark={isDark} onClick={onClickHandler}>
       <Piece position={{ row: rowIndex, col: columnIndex }} />
