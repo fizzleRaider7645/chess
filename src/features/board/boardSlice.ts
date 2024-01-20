@@ -1,11 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialBoardSetup } from "./helpers";
-import { Board } from "../../componets/organisms/Board/types";
+import { BoardState } from "./types";
 
-const initialState: Board = [...initialBoardSetup()];
+const initialState: BoardState = {
+  board: initialBoardSetup(),
+  selectedSquare: null,
+};
 
-const boardSlice = createSlice({
-  name: "board",
+const boardStateSlice = createSlice({
+  name: "boardState",
   initialState,
   reducers: {
     movePiece: () => {},
@@ -13,6 +16,6 @@ const boardSlice = createSlice({
   },
 });
 
-export const { movePiece, updateBoard } = boardSlice.actions;
+export const { movePiece, updateBoard } = boardStateSlice.actions;
 
-export default boardSlice.reducer;
+export default boardStateSlice.reducer;

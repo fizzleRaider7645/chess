@@ -5,7 +5,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 
 const Board: React.FC = () => {
-  const chessBoard = useSelector(({ board }: RootState) => board);
+  const chessBoard = useSelector(
+    ({ boardState: { board } }: RootState) => board
+  );
 
   return (
     <ParentContainer>

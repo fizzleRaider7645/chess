@@ -1,12 +1,14 @@
 import { SquareElement } from "../../organisms/Board/subcomponents";
 import { SquareProps } from "./types";
-import { useContext } from "react";
 import { determineIsDark } from "./helpers";
 import Piece from "../Piece";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 
 const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
-  // const { setSelectedSquare } = useContext(BoardContext);
-
+  const selectedSquare = useSelector(
+    ({ boardState: { selectedSquare } }: RootState) => selectedSquare
+  );
   const isDark = determineIsDark(columnIndex, rowIndex);
 
   const onClickHandler = () => {

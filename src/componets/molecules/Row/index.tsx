@@ -6,7 +6,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 
 const Row: React.FC<RowProps> = ({ rowIndex }) => {
-  const chessBoard = useSelector(({ board }: RootState) => board);
+  const chessBoard = useSelector(
+    ({ boardState: { board } }: RootState) => board
+  );
 
   const rowState = chessBoard[rowIndex];
 
