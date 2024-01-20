@@ -32,7 +32,7 @@ const Board: React.FC = () => {
           {chessBoard.map((_, rowIndex) => (
             <Row key={`row-${rowIndex}`} rowIndex={rowIndex} />
           ))}
-        </BoardContext.Provider>
+        {/* </BoardContext.Provider> */}
       </Container>
     </ParentContainer>
   );

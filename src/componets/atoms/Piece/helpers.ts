@@ -72,6 +72,7 @@ export const pieceMap = {
  *  - the piece's previous square is not empty
  */
 
+// remove this
 interface MoveToProps {
   pieceData: PieceData | null;
   boardState: Board;
