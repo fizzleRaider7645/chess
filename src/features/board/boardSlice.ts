@@ -16,18 +16,15 @@ const boardStateSlice = createSlice({
     // make reducers pure / only input
     movePiece: (state, { payload }: PayloadAction<MoveActionType>) => {
       const { currentPosition, nextPosition } = payload;
+      // Move the selected piece to the next position
+      state.board[nextPosition.row][nextPosition.col] = state.selectedPiece;
 
-      if (state.selectedPiece && state.selectedSquare) {
-        // Move the selected piece to the next position
-        state.board[nextPosition.row][nextPosition.col] = state.selectedPiece;
+      // Clear the starting position
+      state.board[currentPosition.row][currentPosition.col] = null;
 
-        // Clear the starting position
-        state.board[currentPosition.row][currentPosition.col] = null;
-
-        // Optionally, reset selectedPiece and selectedSquare if you want to deselect after moving
-        state.selectedPiece = null;
-        state.selectedSquare = null;
-      }
+      // Optionally, reset selectedPiece and selectedSquare if you want to deselect after moving
+      state.selectedPiece = null;
+      state.selectedSquare = null;
     },
     revert: () => {},
     updateSelectedSquare: (state, { payload }: PayloadAction<Position>) => {
