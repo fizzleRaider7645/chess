@@ -4,41 +4,42 @@ import { determineIsDark } from "./helpers";
 import Piece from "../Piece";
 import { useDispatch, useSelector } from "react-redux";
 import { attemptMove } from "../../../features/board/middleWare";
-import { RootState } from "../../../store";
+import { AppDispatch, RootState } from "../../../store";
+import { updateSelectedSquare } from "../../../features/board/boardSlice";
 
 const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
-  const { selectedSquare } = useSelector(({ boardState }: RootState) => ({
-    selectedSquare: boardState.selectedSquare,
-    selectedPiece: boardState.selectedPiece,
-    board: boardState.board,
-  }));
+  const { selectedSquare, selectedPiece, board } = useSelector(
+    ({ boardState }: RootState) => ({
+      selectedSquare: boardState.selectedSquare,
+      selectedPiece: boardState.selectedPiece,
+      board: boardState.board,
+    })
+  );
 
   const isDark = determineIsDark(columnIndex, rowIndex);
 
   const onClickHandler = () => {
     const currentPosition = { col: columnIndex, row: rowIndex };
-    // const pieceAtCurrentPosition = board[rowIndex][columnIndex];
+    const pieceAtCurrentPosition = board[rowIndex][columnIndex];
 
-    dispatch(attemptMove(currentPosition, nextPosition));
-
-    // if (
-    //   selectedSquare &&
-    //   selectedPiece &&
-    //   (selectedSquare.row !== rowIndex || selectedSquare.col !== columnIndex)
-    // ) {
-    //   // A piece is already selected, and a different square is clicked, try to move
-    //   dispatch(
-    //     movePiece({
-    //       currentPosition: selectedSquare,
-    //       nextPosition: currentPosition,
-    //     })
-    //   );
-    // } else if (pieceAtCurrentPosition) {
-    //   // No piece is selected, and the clicked square has a piece, select this square and piece
-    //   dispatch(updateSelectedSquare(currentPosition));
-    // }
+    if (
+      selectedSquare &&
+      selectedPiece &&
+      (selectedSquare.row !== rowIndex || selectedSquare.col !== columnIndex)
+    ) {
+      // A piece is already selected, and a different square is clicked, try to move
+      dispatch(
+        attemptMove({
+          currentPosition: selectedSquare,
+          nextPosition: currentPosition,
+        })
+      );
+    } else if (pieceAtCurrentPosition) {
+      // No piece is selected, and the clicked square has a piece, select this square and piece
+      dispatch(updateSelectedSquare(currentPosition));
+    }
   };
 
   return (

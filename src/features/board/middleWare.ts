@@ -1,9 +1,8 @@
 // actions/chessActions.js
 
-import { Action, ThunkAction } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Position } from "../../componets/atoms/Piece/types";
 // import { calculateMove } from "../../const/logic";
-import { AppDispatch, AppThunk, RootState } from "../../store";
 import {
   movePiece,
   //   handleSpecialMoveAction,
@@ -46,11 +45,15 @@ import {
 // }
 // };
 
-export const attemptMove = (
-  currentPosition: Position,
-  nextPosition: Position
-): AppThunk => {
-  return async (dispatch, getState) => {
+export const attemptMove = createAsyncThunk(
+  "attempt/move",
+  (
+    {
+      currentPosition,
+      nextPosition,
+    }: { currentPosition: Position; nextPosition: Position },
+    { dispatch }
+  ) => {
     dispatch(movePiece({ currentPosition, nextPosition }));
-  };
-};
+  }
+);
