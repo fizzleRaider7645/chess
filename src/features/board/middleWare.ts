@@ -1,6 +1,3 @@
-// actions/chessActions.js
-
-import { ThunkAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { Position } from "../../componets/atoms/Piece/types";
 // import { calculateMove } from "../../const/logic";
 import {
@@ -8,7 +5,8 @@ import {
   //   handleSpecialMoveAction,
   //   showInvalidMoveError,
 } from "./boardSlice";
-import { AppDispatch, AppThunk, RootState } from "../../store";
+import { AppThunk } from "../../store";
+import { PayloadType } from "./types";
 
 // export const attemptMove =
 //   (
@@ -45,9 +43,6 @@ import { AppDispatch, AppThunk, RootState } from "../../store";
 // dispatch(movePiece({ currentPosition, nextPosition }));
 // }
 // };
-
-// Define your thunk action creator
-type PayloadType = { currentPosition: Position; nextPosition: Position };
 
 export const attemptMove =
   ({ currentPosition, nextPosition }: PayloadType): AppThunk =>

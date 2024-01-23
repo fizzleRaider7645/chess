@@ -10,3 +10,5 @@ export interface MoveActionType {
   currentPosition: Position;
   nextPosition: Position;
 }
+
+export type PayloadType = { currentPosition: Position; nextPosition: Position };
