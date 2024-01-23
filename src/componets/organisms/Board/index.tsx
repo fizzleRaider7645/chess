@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 
 const Board: React.FC = () => {
+  // look intoo reselect and maybe passing board down all the way through square
   const chessBoard = useSelector(
     ({ boardState: { board } }: RootState) => board
   );

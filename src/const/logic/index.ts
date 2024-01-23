@@ -1,4 +1,3 @@
-// utils/chessLogic.ts
 import { Piece, Position } from "../../componets/atoms/Piece/types";
 import { Board } from "../../componets/organisms/Board/types";
 

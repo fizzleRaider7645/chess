@@ -1,10 +1,4 @@
-import { Position } from "../../componets/atoms/Piece/types";
-// import { calculateMove } from "../../const/logic";
-import {
-  movePiece,
-  //   handleSpecialMoveAction,
-  //   showInvalidMoveError,
-} from "./boardSlice";
+import { movePiece } from "./boardSlice";
 import { AppThunk } from "../../store";
 import { PayloadType } from "./types";
 
@@ -47,21 +41,14 @@ import { PayloadType } from "./types";
 export const attemptMove =
   ({ currentPosition, nextPosition }: PayloadType): AppThunk =>
   (dispatch, getState) => {
-    const state = getState();
+    const {
+      boardState: { selectedPiece },
+    } = getState();
     // const { board, selectedPiece } = state.boardState;
+    console.log(selectedPiece);
 
     // if (shouldMovePiece(selectedPiece, currentPosition, nextPosition, board)) {
     dispatch(movePiece({ currentPosition, nextPosition }));
     // } else {
     // }
   };
-
-const shouldMovePiece = (
-  selectedPiece: Piece,
-  currentPosition: Position,
-  nextPosition: Position,
-  board: BoardState
-): boolean => {
-  // Return true if the piece should move, false otherwise
-  return true; // Placeholder
-};
