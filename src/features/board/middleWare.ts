@@ -48,7 +48,7 @@ export const attemptMove =
   ({ currentPosition, nextPosition }: PayloadType): AppThunk =>
   (dispatch, getState) => {
     const state = getState();
-    // const { board, selectedPiece } = state.boardState; // Adjust based on your actual state structure
+    // const { board, selectedPiece } = state.boardState;
 
     // if (shouldMovePiece(selectedPiece, currentPosition, nextPosition, board)) {
     dispatch(movePiece({ currentPosition, nextPosition }));
