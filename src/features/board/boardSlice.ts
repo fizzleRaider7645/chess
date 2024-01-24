@@ -30,7 +30,12 @@ const boardStateSlice = createSlice({
       state.selectedPiece = null;
       state.selectedSquare = null;
     },
-    revert: () => {},
+    revert: (state) => {
+      const { frames } = state;
+      const lastFrame = frames.pop();
+
+      state.board = lastFrame;
+    },
     updateSelectedSquare: (state, { payload }: PayloadAction<Position>) => {
       state.selectedSquare = payload;
       // Ensure that the selected piece is updated based on the new selected square
