@@ -1,27 +1,33 @@
 import { PieceProps, Piece as PieceType } from "./types";
 import { SVGImage } from "./subcomponents";
-import { pieceMap } from "./helpers";
+import { determineIsSelected, pieceMap } from "./helpers";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 
 const Piece = ({ position }: PieceProps): JSX.Element | "" => {
-  const chessBoard = useSelector(
-    ({ boardState: { board } }: RootState) => board
+  const { board, selectedSquare } = useSelector(
+    ({ boardState }: RootState) => boardState
   );
 
   const pieceOnSelectedSquare: PieceType | null =
-    chessBoard[position?.row][position?.col];
+    board[position?.row][position?.col];
 
   const pieceToRender =
     (pieceOnSelectedSquare &&
       pieceMap[pieceOnSelectedSquare.label]?.[pieceOnSelectedSquare.color]) ??
     "";
 
+  const isSelected = determineIsSelected({
+    selectedSquare,
+    rowIndex: position.row,
+    columnIndex: position.col,
+  });
+
   return pieceToRender ? (
     <SVGImage
       src={pieceToRender}
       alt={`${pieceOnSelectedSquare?.color} ${pieceOnSelectedSquare?.label}`}
-      $isSelected={false}
+      $isSelected={isSelected}
     />
   ) : (
     ""

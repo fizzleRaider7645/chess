@@ -22,8 +22,7 @@ export const determineIsSelected = ({
   columnIndex,
 }: DetermineIsSelectedProps): boolean => {
   return !!(
-    selectedSquare?.rowIndex === rowIndex &&
-    selectedSquare?.columnIndex === columnIndex
+    selectedSquare?.row === rowIndex && selectedSquare?.col === columnIndex
   );
 };
 

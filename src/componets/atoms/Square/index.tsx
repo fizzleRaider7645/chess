@@ -10,6 +10,7 @@ import { boardStateSelector } from "./selectors";
 
 const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
   const dispatch = useDispatch<AppDispatch>();
+
   const { selectedSquare, selectedPiece, board } =
     useSelector(boardStateSelector);
 
