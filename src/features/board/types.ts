@@ -5,6 +5,7 @@ export interface BoardState {
   board: Board;
   selectedSquare: Position | null;
   selectedPiece: Piece | null;
+  frames: Board[];
 }
 export interface MoveActionType {
   currentPosition: Position;

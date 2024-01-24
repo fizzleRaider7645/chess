@@ -7,6 +7,7 @@ const initialState: BoardState = {
   board: initialBoardSetup(),
   selectedSquare: null,
   selectedPiece: null,
+  frames: [],
 };
 
 const boardStateSlice = createSlice({
@@ -21,6 +22,9 @@ const boardStateSlice = createSlice({
 
       // Clear the starting position
       state.board[currentPosition.row][currentPosition.col] = null;
+
+      // Add last move to frames
+      [...state.frames, state.board];
 
       // Optionally, reset selectedPiece and selectedSquare if you want to deselect after moving
       state.selectedPiece = null;
