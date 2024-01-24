@@ -4,19 +4,14 @@ import { determineIsDark } from "./helpers";
 import Piece from "../Piece";
 import { useDispatch, useSelector } from "react-redux";
 import { attemptMove } from "../../../features/board/middleWare";
-import { AppDispatch, RootState } from "../../../store";
+import { AppDispatch } from "../../../store";
 import { updateSelectedSquare } from "../../../features/board/boardSlice";
+import { boardStateSelector } from "./selectors";
 
 const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
   const dispatch = useDispatch<AppDispatch>();
-
-  const { selectedSquare, selectedPiece, board } = useSelector(
-    ({ boardState }: RootState) => ({
-      selectedSquare: boardState.selectedSquare,
-      selectedPiece: boardState.selectedPiece,
-      board: boardState.board,
-    })
-  );
+  const { selectedSquare, selectedPiece, board } =
+    useSelector(boardStateSelector);
 
   const isDark = determineIsDark(columnIndex, rowIndex);
 

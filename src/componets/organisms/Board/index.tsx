@@ -14,7 +14,11 @@ const Board: React.FC = () => {
     <ParentContainer>
       <Container>
         {chessBoard.map((_, rowIndex) => (
-          <Row key={`row-${rowIndex}`} rowIndex={rowIndex} />
+          <Row
+            key={`row-${rowIndex}`}
+            rowIndex={rowIndex}
+            chessBoard={chessBoard}
+          />
         ))}
       </Container>
     </ParentContainer>
