@@ -1,4 +1,4 @@
-import { movePiece } from "./boardSlice";
+import { movePiece, revert } from "./boardSlice";
 import { AppThunk } from "../../store";
 import { PayloadType } from "./types";
 
@@ -52,3 +52,12 @@ export const attemptMove =
     // } else {
     // }
   };
+
+export const attemptRevert = (): AppThunk => (dispatch, getState) => {
+  const {
+    boardState: { gameFrames },
+  } = getState();
+  if (gameFrames.length > 1) {
+    dispatch(revert());
+  }
+};

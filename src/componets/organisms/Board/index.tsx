@@ -4,7 +4,7 @@ import { Container, ParentContainer } from "./subcomponents";
 import { useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store";
 import { useDispatch } from "react-redux";
-import { revert } from "../../../features/board/boardSlice";
+import { attemptRevert } from "../../../features/board/middleWare";
 const Board: React.FC = () => {
   const chessBoard = useSelector(
     ({ boardState: { board } }: RootState) => board
@@ -14,7 +14,7 @@ const Board: React.FC = () => {
 
   return (
     <ParentContainer>
-      <button onClick={() => dispatch(revert())}>Reset</button>
+      <button onClick={() => dispatch(attemptRevert())}>Reset</button>
       <Container>
         {chessBoard.map((_, rowIndex) => (
           <Row

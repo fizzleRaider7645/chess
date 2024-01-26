@@ -26,14 +26,11 @@ const boardStateSlice = createSlice({
       state.selectedSquare = null;
     },
     revert: (state) => {
-      if (state.gameFrames.length > 1) {
-        const previousFrameIndex = state.gameFrames.length - 2;
-        const previousBoard = state.gameFrames[previousFrameIndex];
-        state.board = previousBoard;
-        state.gameFrames.pop();
-        state.selectedSquare = null;
-        state.selectedPiece = null;
-      }
+      const previousBoard = state.gameFrames[state.gameFrames.length - 2];
+      state.board = previousBoard;
+      state.gameFrames.pop();
+      state.selectedSquare = null;
+      state.selectedPiece = null;
     },
     updateSelectedSquare: (state, { payload }: PayloadAction<Position>) => {
       state.selectedSquare = payload;
