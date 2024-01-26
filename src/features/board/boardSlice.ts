@@ -32,7 +32,7 @@ const boardStateSlice = createSlice({
     },
     updateSelectedSquare: (state, { payload }: PayloadAction<Position>) => {
       state.selectedSquare = payload;
-      state.selectedPiece = state.board[payload.row][payload.col] ?? null;
+      state.selectedPiece = state.board[payload.row][payload.col];
     },
   },
 });
