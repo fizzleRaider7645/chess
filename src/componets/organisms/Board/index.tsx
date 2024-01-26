@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store";
 import { useDispatch } from "react-redux";
 import { attemptRevert } from "../../../features/board/middleWare";
+
 const Board: React.FC = () => {
   const chessBoard = useSelector(
     ({ boardState: { board } }: RootState) => board

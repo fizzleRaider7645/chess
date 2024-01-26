@@ -12,6 +12,7 @@ export interface BoardState {
   turn: PieceColors.White;
   gameFrames: Board[];
 }
+
 export interface MoveActionType {
   currentPosition: Position;
   nextPosition: Position;
