@@ -1,13 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialBoardSetup } from "./helpers";
 import { BoardState, MoveActionType } from "./types";
-import { Position } from "../../componets/atoms/Piece/types";
+import { PieceColors, Position } from "../../componets/atoms/Piece/types";
 
 const initialState: BoardState = {
   board: initialBoardSetup(),
   selectedSquare: null,
   selectedPiece: null,
-  gameFrames: [],
+  turn: PieceColors.White,
+  gameFrames: [initialBoardSetup()],
 };
 
 const boardStateSlice = createSlice({
@@ -17,11 +18,8 @@ const boardStateSlice = createSlice({
     movePiece: (state, { payload }: PayloadAction<MoveActionType>) => {
       const { currentPosition, nextPosition } = payload;
       state.board[nextPosition.row][nextPosition.col] = state.selectedPiece;
-
       state.board[currentPosition.row][currentPosition.col] = null;
-
       state.gameFrames = [...state.gameFrames, state.board];
-
       state.selectedPiece = null;
       state.selectedSquare = null;
     },
