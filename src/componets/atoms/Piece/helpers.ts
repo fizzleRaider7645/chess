@@ -20,9 +20,13 @@ export const determineIsSelected = ({
   selectedSquare,
   rowIndex,
   columnIndex,
+  turn,
+  selectedPiece,
 }: DetermineIsSelectedProps): boolean => {
   return !!(
-    selectedSquare?.row === rowIndex && selectedSquare?.col === columnIndex
+    selectedSquare?.row === rowIndex &&
+    selectedSquare?.col === columnIndex &&
+    selectedPiece.color === turn
   );
 };
 

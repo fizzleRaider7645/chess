@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 
 const Piece = ({ position }: PieceProps): JSX.Element | "" => {
-  const { board, selectedSquare } = useSelector(
+  const { board, selectedSquare, turn, selectedPiece } = useSelector(
     ({ boardState }: RootState) => boardState
   );
 
@@ -21,6 +21,8 @@ const Piece = ({ position }: PieceProps): JSX.Element | "" => {
     selectedSquare,
     rowIndex: position.row,
     columnIndex: position.col,
+    turn,
+    selectedPiece,
   });
 
   return pieceToRender ? (

@@ -29,4 +29,6 @@ export interface DetermineIsSelectedProps {
   selectedSquare: Position | null;
   rowIndex: number;
   columnIndex: number;
+  turn: PieceColors;
+  selectedPiece: Piece | null;
 }

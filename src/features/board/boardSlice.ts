@@ -22,6 +22,10 @@ const boardStateSlice = createSlice({
       state.gameFrames = [...state.gameFrames, state.board];
       state.selectedPiece = null;
       state.selectedSquare = null;
+      state.turn =
+        state.turn === PieceColors.White
+          ? PieceColors.Black
+          : PieceColors.White;
     },
     revert: (state) => {
       const previousBoard = state.gameFrames[state.gameFrames.length - 2];

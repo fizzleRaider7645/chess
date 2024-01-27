@@ -9,7 +9,7 @@ export interface BoardState {
   board: Board;
   selectedSquare: Position | null;
   selectedPiece: Piece | null;
-  turn: PieceColors.White;
+  turn: PieceColors;
   gameFrames: Board[];
 }
 

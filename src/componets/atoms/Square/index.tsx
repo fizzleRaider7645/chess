@@ -11,7 +11,7 @@ import { boardStateSelector } from "./selectors";
 const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const { selectedSquare, selectedPiece, board } =
+  const { selectedSquare, selectedPiece, board, turn } =
     useSelector(boardStateSelector);
 
   const isDark = determineIsDark(columnIndex, rowIndex);
@@ -23,6 +23,7 @@ const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
     if (
       selectedSquare &&
       selectedPiece &&
+      selectedPiece.color === turn &&
       (selectedSquare.row !== rowIndex || selectedSquare.col !== columnIndex)
     ) {
       // A piece is already selected, and a different square is clicked, try to move
