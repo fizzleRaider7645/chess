@@ -26,7 +26,7 @@ export const determineIsSelected = ({
   return !!(
     selectedSquare?.row === rowIndex &&
     selectedSquare?.col === columnIndex &&
-    selectedPiece.color === turn
+    selectedPiece?.color === turn
   );
 };
 
