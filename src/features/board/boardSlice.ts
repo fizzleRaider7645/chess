@@ -28,7 +28,7 @@ const boardStateSlice = createSlice({
           : PieceColors.White;
     },
     revert: (state) => {
-      const previousBoard = state.gameFrames[state.gameFrames.length - 2];
+      const previousBoard = state.gameFrames[state.gameFrames.length - 1];
       state.board = previousBoard;
       state.gameFrames.pop();
       state.selectedSquare = null;
