@@ -15,6 +15,7 @@ const boardStateSlice = createSlice({
   name: "boardState",
   initialState,
   reducers: {
+    // remove conditional logic at some point
     movePiece: (state, { payload }: PayloadAction<MoveActionType>) => {
       const { currentPosition, nextPosition } = payload;
       if (state.selectedPiece) {
