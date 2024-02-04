@@ -21,9 +21,10 @@ export interface Piece {
   color: PieceColors;
   label: PieceLabels;
   position: Position;
+  turn: number;
 }
 
-export type PieceProps = Omit<Piece, "color" | "label">;
+export type PieceProps = Omit<Piece, "color" | "label" | "turn">;
 
 export interface DetermineIsSelectedProps {
   selectedSquare: Position | null;

@@ -17,6 +17,9 @@ const boardStateSlice = createSlice({
   reducers: {
     movePiece: (state, { payload }: PayloadAction<MoveActionType>) => {
       const { currentPosition, nextPosition } = payload;
+      if (state.selectedPiece) {
+        state.selectedPiece.turn = (state.selectedPiece.turn ?? 0) + 1;
+      }
       state.board[nextPosition.row][nextPosition.col] = state.selectedPiece;
       state.board[currentPosition.row][currentPosition.col] = null;
       state.gameFrames = [...state.gameFrames, state.board];
