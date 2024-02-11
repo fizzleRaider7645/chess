@@ -1,6 +1,6 @@
-import { PieceLabels } from "../../componets/atoms/Piece/types";
+import { PieceLabels } from "../../components/atoms/Piece/types";
 import { IsValidMoveProps } from "./types";
-import pawnLogic from "./pawn";
+import pawnLogic from "./maps/pawn";
 
 const getPieceLogic = (pieceLabel: PieceLabels) => {
   const logicMap = {

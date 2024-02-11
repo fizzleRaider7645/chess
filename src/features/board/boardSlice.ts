@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialBoardSetup } from "./helpers";
 import { BoardState, MoveActionType } from "./types";
-import { PieceColors, Position } from "../../componets/atoms/Piece/types";
+import { PieceColors, Position } from "../../components/atoms/Piece/types";
 
 const initialState: BoardState = {
   board: initialBoardSetup(),

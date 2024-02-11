@@ -2,8 +2,8 @@ import {
   Piece,
   PieceColors,
   Position,
-} from "../../componets/atoms/Piece/types";
-import { Board } from "../../componets/organisms/Board/types";
+} from "../../components/atoms/Piece/types";
+import { Board } from "../../components/organisms/Board/types";
 
 export interface BoardState {
   board: Board;

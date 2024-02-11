@@ -1,4 +1,4 @@
-import Board from "./componets/organisms/Board";
+import Board from "./components/organisms/Board";
 import { Provider } from "react-redux";
 import { store } from "./store";
 
