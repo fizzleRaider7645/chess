@@ -4,17 +4,9 @@ import { PayloadType } from "./types";
 
 export const attemptMove =
   ({ currentPosition, nextPosition }: PayloadType): AppThunk =>
-  (dispatch, getState) => {
-    const {
-      boardState: { selectedPiece },
-    } = getState();
-    // const { board, selectedPiece } = state.boardState;
-    console.log(selectedPiece);
-
-    // if (shouldMovePiece(selectedPiece, currentPosition, nextPosition, board)) {
+  (dispatch) => {
+    // add isValid here / will also need to add something for special moves
     dispatch(movePiece({ currentPosition, nextPosition }));
-    // } else {
-    // }
   };
 
 export const attemptRevert = (): AppThunk => (dispatch, getState) => {
