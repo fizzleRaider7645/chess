@@ -21,7 +21,6 @@ const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
     const pieceAtCurrentPosition = board[rowIndex][columnIndex];
 
     if (
-      // fix this
       selectedSquare &&
       selectedPiece &&
       selectedPiece.color === turn &&
