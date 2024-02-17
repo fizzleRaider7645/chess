@@ -5,7 +5,7 @@ import { PayloadType } from "./types";
 export const attemptMove =
   ({ currentPosition, nextPosition }: PayloadType): AppThunk =>
   (dispatch) => {
-    // add isValid here / will also need to add something for special moves
+    // add isValid here + will also need to add something for special moves
     dispatch(movePiece({ currentPosition, nextPosition }));
   };
 
