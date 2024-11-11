@@ -19,7 +19,8 @@ const boardStateSlice = createSlice({
     movePiece: (state, { payload }: PayloadAction<MoveActionType>) => {
       const { currentPosition, nextPosition } = payload;
       if (state.selectedPiece) {
-        state.selectedPiece.turn = (state.selectedPiece.turn ?? 0) + 1;
+        state.selectedPiece.timesMoved =
+          (state.selectedPiece.timesMoved ?? 0) + 1;
       }
       state.board[nextPosition.row][nextPosition.col] = state.selectedPiece;
       state.board[currentPosition.row][currentPosition.col] = null;
@@ -36,6 +37,7 @@ const boardStateSlice = createSlice({
       state.board = previousBoard;
       state.gameFrames.pop();
       state.selectedSquare = null;
+      state.selectedPiece?.timesMoved && state.selectedPiece.timesMoved - 1;
       state.selectedPiece = null;
     },
     updateSelectedSquare: (state, { payload }: PayloadAction<Position>) => {
