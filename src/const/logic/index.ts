@@ -7,30 +7,49 @@ import { IsValidMoveProps } from "./types";
 import pawnLogic from "./maps/pawn";
 import { Board } from "../../components/organisms/Board/types";
 
-const getPieceLogic = (
-  selectedPiece: Piece,
-  nextPosition: Position,
-  currentPosition: Position,
-  board: Board
-) => {
-  const pieceLabel = selectedPiece.label;
-
-  const logicMap = {
-    [PieceLabels.Pawn]: () =>
-      pawnLogic({
-        piece: selectedPiece,
-        nextPosition,
-        currentPosition,
-        board,
-      }),
-    [PieceLabels.Bishop]: () => false,
-    [PieceLabels.Rook]: () => false,
-    [PieceLabels.Knight]: () => false,
-    [PieceLabels.Queen]: () => false,
-    [PieceLabels.King]: () => false,
-  };
-
-  return logicMap[pieceLabel];
+const logicMap = {
+  [PieceLabels.Pawn]: (
+    piece: Piece,
+    nextPosition: Position,
+    currentPosition: Position,
+    board: Board
+  ) =>
+    pawnLogic({
+      piece,
+      nextPosition,
+      currentPosition,
+      board,
+    }),
+  [PieceLabels.Bishop]: (
+    piece: Piece,
+    nextPosition: Position,
+    currentPosition: Position,
+    board: Board
+  ) => false,
+  [PieceLabels.Rook]: (
+    piece: Piece,
+    nextPosition: Position,
+    currentPosition: Position,
+    board: Board
+  ) => false,
+  [PieceLabels.Knight]: (
+    piece: Piece,
+    nextPosition: Position,
+    currentPosition: Position,
+    board: Board
+  ) => false,
+  [PieceLabels.Queen]: (
+    piece: Piece,
+    nextPosition: Position,
+    currentPosition: Position,
+    board: Board
+  ) => false,
+  [PieceLabels.King]: (
+    piece: Piece,
+    nextPosition: Position,
+    currentPosition: Position,
+    board: Board
+  ) => false,
 };
 
 export const isValidMove = ({
@@ -39,11 +58,10 @@ export const isValidMove = ({
   nextPosition,
   board,
 }: IsValidMoveProps): boolean => {
-  const pieceLogic = getPieceLogic(
+  return logicMap[selectedPiece.label](
     selectedPiece,
     nextPosition,
     currentPosition,
     board
   );
-  return pieceLogic();
 };
