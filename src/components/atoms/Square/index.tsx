@@ -31,6 +31,8 @@ const Square = ({ columnIndex, rowIndex }: SquareProps): JSX.Element => {
         attemptMove({
           currentPosition: selectedSquare,
           nextPosition: currentPosition,
+          selectedPiece,
+          board,
         })
       );
     } else if (pieceAtCurrentPosition) {

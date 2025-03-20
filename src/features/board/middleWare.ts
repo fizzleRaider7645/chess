@@ -1,12 +1,26 @@
 import { movePiece, revert } from "./boardSlice";
 import { AppThunk } from "../../store";
 import { PayloadType } from "./types";
+import { isValidMove } from "../../const/logic";
 
 export const attemptMove =
-  ({ currentPosition, nextPosition }: PayloadType): AppThunk =>
+  ({
+    currentPosition,
+    nextPosition,
+    selectedPiece,
+    board,
+  }: PayloadType): AppThunk =>
   (dispatch) => {
-    // add isValid here + will also need to add something for special moves
-    dispatch(movePiece({ currentPosition, nextPosition }));
+    const moveIsValid = isValidMove({
+      currentPosition,
+      nextPosition,
+      selectedPiece,
+      board,
+    });
+
+    if (moveIsValid) {
+      dispatch(movePiece({ currentPosition, nextPosition }));
+    }
   };
 
 export const attemptRevert = (): AppThunk => (dispatch, getState) => {

@@ -1,15 +1,33 @@
-import { PieceLabels } from "../../components/atoms/Piece/types";
+import {
+  Piece,
+  PieceLabels,
+  Position,
+} from "../../components/atoms/Piece/types";
 import { IsValidMoveProps } from "./types";
 import pawnLogic from "./maps/pawn";
+import { Board } from "../../components/organisms/Board/types";
 
-const getPieceLogic = (pieceLabel: PieceLabels) => {
+const getPieceLogic = (
+  selectedPiece: Piece,
+  nextPosition: Position,
+  currentPosition: Position,
+  board: Board
+) => {
+  const pieceLabel = selectedPiece.label;
+
   const logicMap = {
-    [PieceLabels.Pawn]: pawnLogic,
-    [PieceLabels.Bishop]: {},
-    [PieceLabels.Rook]: {},
-    [PieceLabels.Knight]: {},
-    [PieceLabels.Queen]: {},
-    [PieceLabels.King]: {},
+    [PieceLabels.Pawn]: () =>
+      pawnLogic({
+        piece: selectedPiece,
+        nextPosition,
+        currentPosition,
+        board,
+      }),
+    [PieceLabels.Bishop]: () => false,
+    [PieceLabels.Rook]: () => false,
+    [PieceLabels.Knight]: () => false,
+    [PieceLabels.Queen]: () => false,
+    [PieceLabels.King]: () => false,
   };
 
   return logicMap[pieceLabel];
@@ -20,6 +38,12 @@ export const isValidMove = ({
   currentPosition,
   nextPosition,
   board,
-}: IsValidMoveProps) => {
-  const pieceLogic = getPieceLogic(selectedPiece.label);
+}: IsValidMoveProps): boolean => {
+  const pieceLogic = getPieceLogic(
+    selectedPiece,
+    nextPosition,
+    currentPosition,
+    board
+  );
+  return pieceLogic();
 };

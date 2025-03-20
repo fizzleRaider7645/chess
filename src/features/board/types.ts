@@ -18,4 +18,9 @@ export interface MoveActionType {
   nextPosition: Position;
 }
 
-export type PayloadType = { currentPosition: Position; nextPosition: Position };
+export type PayloadType = {
+  currentPosition: Position;
+  nextPosition: Position;
+  selectedPiece: Piece;
+  board: Board;
+};
