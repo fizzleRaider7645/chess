@@ -37,6 +37,7 @@ const pawn = ({
   const isDiagonalCapture =
     Math.abs(nextPosition.col - currentPosition.col) === 1 &&
     nextPosition.row === currentPosition.row + moveDirection &&
+    board[nextPosition.row][nextPosition.col] &&
     board[nextPosition.row][nextPosition.col]?.color !== piece.color;
 
   // The target square must be empty for forward moves

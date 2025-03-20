@@ -19,10 +19,12 @@ const boardStateSlice = createSlice({
     movePiece: (state, { payload }: PayloadAction<MoveActionType>) => {
       const { currentPosition, nextPosition } = payload;
       if (state.selectedPiece) {
-        state.selectedPiece.timesMoved =
-          (state.selectedPiece.timesMoved ?? 0) + 1;
+        const updatedPiece = {
+          ...state.selectedPiece,
+          timesMoved: (state.selectedPiece.timesMoved ?? 0) + 1,
+        };
+        state.board[nextPosition.row][nextPosition.col] = updatedPiece;
       }
-      state.board[nextPosition.row][nextPosition.col] = state.selectedPiece;
       state.board[currentPosition.row][currentPosition.col] = null;
       state.gameFrames = [...state.gameFrames, state.board];
       state.selectedPiece = null;
@@ -41,8 +43,26 @@ const boardStateSlice = createSlice({
       state.selectedPiece = null;
     },
     updateSelectedSquare: (state, { payload }: PayloadAction<Position>) => {
-      state.selectedSquare = payload;
-      state.selectedPiece = state.board[payload.row][payload.col];
+      const clickedPiece = state.board[payload.row][payload.col];
+
+      // If clicking on an opponent's piece, clear selection
+      if (clickedPiece && clickedPiece.color !== state.turn) {
+        state.selectedSquare = null;
+        state.selectedPiece = null;
+        return;
+      }
+
+      // If clicking on a piece of the current turn's color, select it
+      if (clickedPiece && clickedPiece.color === state.turn) {
+        state.selectedSquare = payload;
+        state.selectedPiece = clickedPiece;
+        return;
+      }
+
+      // If clicking on an empty square and we have a selected piece, keep the selection
+      if (!clickedPiece && state.selectedPiece) {
+        state.selectedSquare = payload;
+      }
     },
   },
 });

@@ -7,3 +7,10 @@ export interface IsValidMoveProps {
   nextPosition: Position;
   board: Board;
 }
+
+export type PieceLogicFunction = (
+  piece: Piece,
+  nextPosition: Position,
+  currentPosition: Position,
+  board: Board
+) => boolean;

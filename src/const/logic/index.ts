@@ -1,55 +1,17 @@
-import {
-  Piece,
-  PieceLabels,
-  Position,
-} from "../../components/atoms/Piece/types";
-import { IsValidMoveProps } from "./types";
+import { PieceLabels } from "../../components/atoms/Piece/types";
+import { IsValidMoveProps, PieceLogicFunction } from "./types";
 import pawnLogic from "./maps/pawn";
-import { Board } from "../../components/organisms/Board/types";
+import knightLogic from "./maps/knight";
 
-const logicMap = {
-  [PieceLabels.Pawn]: (
-    piece: Piece,
-    nextPosition: Position,
-    currentPosition: Position,
-    board: Board
-  ) =>
-    pawnLogic({
-      piece,
-      nextPosition,
-      currentPosition,
-      board,
-    }),
-  [PieceLabels.Bishop]: (
-    piece: Piece,
-    nextPosition: Position,
-    currentPosition: Position,
-    board: Board
-  ) => false,
-  [PieceLabels.Rook]: (
-    piece: Piece,
-    nextPosition: Position,
-    currentPosition: Position,
-    board: Board
-  ) => false,
-  [PieceLabels.Knight]: (
-    piece: Piece,
-    nextPosition: Position,
-    currentPosition: Position,
-    board: Board
-  ) => false,
-  [PieceLabels.Queen]: (
-    piece: Piece,
-    nextPosition: Position,
-    currentPosition: Position,
-    board: Board
-  ) => false,
-  [PieceLabels.King]: (
-    piece: Piece,
-    nextPosition: Position,
-    currentPosition: Position,
-    board: Board
-  ) => false,
+const logicMap: Record<PieceLabels, PieceLogicFunction> = {
+  [PieceLabels.Pawn]: (piece, nextPosition, currentPosition, board) =>
+    pawnLogic({ piece, nextPosition, currentPosition, board }) || false,
+  [PieceLabels.Bishop]: () => false,
+  [PieceLabels.Rook]: () => false,
+  [PieceLabels.Knight]: (piece, nextPosition, currentPosition, board) =>
+    knightLogic({ piece, nextPosition, currentPosition, board }) || false,
+  [PieceLabels.Queen]: () => false,
+  [PieceLabels.King]: () => false,
 };
 
 export const isValidMove = ({
